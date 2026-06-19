@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Baby Tracker 🍼</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+    body { background: #faf9f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; }
+    input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.5; cursor: pointer; }
+    .slide-up { animation: slideUp 0.25s ease; }
+    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  </style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// CONSTANTS
+// ═══════════════════════════════════════════════════════════════
+const ACTIVITIES = [
+  { id: 'feed',         label: 'Ăn',      emoji: '🍼', hasTimer: true,  clr: 'amber'  },
+  { id: 'sleep',        label: 'Ngủ',     emoji: '😴', hasTimer: true,  clr: 'blue'   },
+  { id: 'play',         label: 'Chơi',    emoji: '🎮', hasTimer: true,  clr: 'green'  },
+  { id: 'bath',         label: 'Tắm',     emoji: '🛁', hasTimer: false, clr: 'cyan'   },
+  { id: 'diaper_wet',   label: 'Tã ướt',  emoji: '💧', hasTimer: false, clr: 'sky'    },
+  { id: 'diaper_dirty', label: 'Tã bẩn',  emoji: '💩', hasTimer: false, clr: 'orange' },
+]
+
+const CLR = {
+  amber:  { bg:'#fffbeb', border:'#f59e0b', text:'#78350f', badge:'#fef3c7', dot:'#f59e0b' },
+  blue:   { bg:'#eff6ff', border:'#3b82f6', text:'#1e3a8a', badge:'#dbeafe', dot:'#3b82f6' },
+  green:  { bg:'#f0fdf4', border:'#22c55e', text:'#14532d', badge:'#dcfce7', dot:'#22c55e' },
+  cyan:   { bg:'#ecfeff', border:'#06b6d4', text:'#164e63', badge:'#cffafe', dot:'#06b6d4' },
+  sky:    { bg:'#f0f9ff', border:'#0ea5e9', text:'#0c4a6e', badge:'#e0f2fe', dot:'#0ea5e9' },
+  orange: { bg:'#fff7ed', border:'#f97316', text:'#7c2d12', badge:'#ffedd5', dot:'#f97316' },
+}
+
+const FEED_TYPES = [
+  { id: 'breast_left',  label: 'Bú trái'  },
+  { id: 'breast_right', label: 'Bú phải'  },
+  { id: 'both',         label: 'Hai bên'  },
+  { id: 'bottle',       label: 'Bình sữa' },
+  { id: 'solid',        label: 'Ăn dặm'   },
+]
+
+const getAct  = (id) => ACTIVITIES.find(a => a.id === id)
+const getClr  = (id) => CLR[getAct(id)?.clr] || CLR.blue
+const ftLabel = (id) => FEED_TYPES.find(f => f.id === id)?.label || ''
+
+// ═══════════════════════════════════════════════════════════════
+// STORAGE
+// ═══════════════════════════════════════════════════════════════
+const K = { logs: 'bt_logs', timer: 'bt_timer', settings: 'bt_settings' }
+
+const store = {
+  getLogs:     ()  => { try { return JSON.parse(localStorage.getItem(K.logs)||'{}') } catch { return {} } },
+  setLogs:     (v) => localStorage.setItem(K.logs, JSON.stringify(v)),
+  getTimer:    ()  => { try { return JSON.parse(localStorage.getItem(K.timer)||'null') } catch { return null } },
+  setTimer:    (v) => v ? localStorage.setItem(K.timer, JSON.stringify(v)) : localStorage.removeItem(K.timer),
+  getSettings: ()  => { try { return JSON.parse(localStorage.getItem(K.settings)||'{}') } catch { return {} } },
+  setSettings: (v) => localStorage.setItem(K.settings, JSON.stringify(v)),
+}
+
+function logsForDate(d) {
+  return (store.getLogs()[d] || []).sort((a,b) => a.startTime.localeCompare(b.startTime))
+}
+function logDates() {
+  return Object.keys(store.getLogs()).sort().reverse()
+}
+function upsertEntry(dateStr, entry) {
+  const all = store.getLogs()
+  if (!all[dateStr]) all[dateStr] = []
+  const i = all[dateStr].findIndex(e => e.id === entry.id)
+  if (i >= 0) all[dateStr][i] = entry; else all[dateStr].push(entry)
+  store.setLogs(all)
+}
+function removeEntry(dateStr, id) {
+  const all = store.getLogs()
+  if (!all[dateStr]) return
+  all[dateStr] = all[dateStr].filter(e => e.id !== id)
+  store.setLogs(all)
+}
+
+// ═══════════════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════════════
+const uid  = () => Date.now() + '_' + Math.random().toString(36).slice(2,6)
+const pad  = (n) => String(n).padStart(2,'0')
+const nowS = () => { const d=new Date(); return pad(d.getHours())+':'+pad(d.getMinutes()) }
+
+function todayStr() {
+  const d = new Date()
+  return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())
+}
+function shiftDate(s, delta) {
+  const [y,mo,d] = s.split('-').map(Number)
+  const dt = new Date(y, mo-1, d)
+  dt.setDate(dt.getDate() + delta)
+  return dt.getFullYear()+'-'+pad(dt.getMonth()+1)+'-'+pad(dt.getDate())
+}
+function calcDur(start, end) {
+  const [sh,sm] = start.split(':').map(Number)
+  const [eh,em] = end.split(':').map(Number)
+  let d = (eh*60+em)-(sh*60+sm)
+  return d < 0 ? d+1440 : d
+}
+function fmtDur(m) {
+  if (!m || m<=0) return ''
+  const h=Math.floor(m/60), mn=m%60
+  if (h===0) return mn+'phút'
+  if (mn===0) return h+'h'
+  return h+'h'+pad(mn)
+}
+function fmtElapsed(s) {
+  const h=Math.floor(s/3600), m=Math.floor((s%3600)/60), sec=s%60
+  return h>0 ? h+':'+pad(m)+':'+pad(sec) : pad(m)+':'+pad(sec)
+}
+function fmtDate(s) {
+  const [y,mo,d] = s.split('-').map(Number)
+  const dt = new Date(y,mo-1,d)
+  const days=['CN','T.2','T.3','T.4','T.5','T.6','T.7']
+  return days[dt.getDay()]+', '+d+'/'+mo
+}
+function fmtDateLong(s) {
+  const [y,mo,d] = s.split('-').map(Number)
+  const dt = new Date(y,mo-1,d)
+  const days=['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7']
+  return days[dt.getDay()]+', '+d+'/'+mo+'/'+y
+}
+function summary(logs) {
+  return {
+    feed:    logs.filter(l=>l.activityId==='feed').length,
+    sleep:   logs.filter(l=>l.activityId==='sleep').reduce((s,l)=>s+(l.duration||0),0),
+    diapers: logs.filter(l=>l.activityId.startsWith('diaper')).length,
+    play:    logs.filter(l=>l.activityId==='play').length,
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════
+let S = {
+  tab:      'today',
+  date:     todayStr(),
+  timer:    null,
+  elapsed:  0,
+  modal:    null,   // { mode:'add'|'edit', actId, entry?, _f? }  _f = form snapshot
+  babyName: store.getSettings().babyName || 'Bé',
+}
+
+let _ticker = null
+
+function set(patch) { S = {...S, ...patch}; draw() }
+
+// ═══════════════════════════════════════════════════════════════
+// TIMER
+// ═══════════════════════════════════════════════════════════════
+function tickStart() {
+  if (_ticker) clearInterval(_ticker)
+  _ticker = setInterval(()=>{ if(S.timer) set({elapsed: Math.floor((Date.now()-S.timer.ts)/1000)}) }, 1000)
+}
+function timerStart(act) {
+  const t = { actId: act.id, startTime: nowS(), ts: Date.now(), date: S.date }
+  store.setTimer(t)
+  tickStart()
+  set({ timer: t, elapsed: 0 })
+}
+function timerStop() {
+  if (!S.timer) return
+  const end = nowS()
+  const dur = calcDur(S.timer.startTime, end)
+  upsertEntry(S.timer.date, { id: uid(), activityId: S.timer.actId, startTime: S.timer.startTime, endTime: end, duration: dur, note: '' })
+  store.setTimer(null)
+  if (_ticker) clearInterval(_ticker)
+  set({ timer: null, elapsed: 0 })
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ACTIONS
+// ═══════════════════════════════════════════════════════════════
+function tapActivity(act) {
+  if (act.hasTimer) {
+    if (S.timer?.actId === act.id) { timerStop() }
+    else if (S.timer) { openModal({ mode:'add', actId: act.id }) }
+    else { timerStart(act) }
+  } else {
+    const t = nowS()
+    upsertEntry(S.date, { id:uid(), activityId:act.id, startTime:t, endTime:t, duration:0, note:'' })
+    draw()
+  }
+}
+
+function openModal(opts) { set({ modal: opts }) }
+function closeModal()    { set({ modal: null }) }
+
+function selectAct(id) {
+  const f = snapForm()
+  set({ modal: {...S.modal, actId: id, _f: {...f, feedType: f.feedType||'breast_left'}} })
+}
+function selectFT(id) {
+  const f = snapForm()
+  set({ modal: {...S.modal, _f: {...f, feedType: id}} })
+}
+
+function snapForm() {
+  return {
+    startTime: val('mStart') || nowS(),
+    endTime:   val('mEnd')   || nowS(),
+    note:      val('mNote')  || '',
+    feedType:  val('mFT')    || 'breast_left',
+    amount:    val('mAmt')   || '',
+  }
+}
+function val(id) { return document.getElementById(id)?.value || '' }
+
+function submitModal() {
+  const f    = snapForm()
+  const act  = getAct(S.modal.actId)
+  const dur  = act.hasTimer ? calcDur(f.startTime, f.endTime) : 0
+  const data = {
+    activityId: S.modal.actId,
+    startTime:  f.startTime,
+    endTime:    act.hasTimer ? f.endTime : f.startTime,
+    duration:   dur,
+    note:       f.note,
+    feedType:   S.modal.actId==='feed' ? f.feedType : undefined,
+    amount:     (S.modal.actId==='feed' && f.feedType==='bottle' && f.amount) ? Number(f.amount) : undefined,
+  }
+  if (S.modal.mode==='edit' && S.modal.entry) {
+    upsertEntry(S.date, { ...S.modal.entry, ...data })
+  } else {
+    upsertEntry(S.date, { id: uid(), ...data })
+  }
+  set({ modal: null })
+}
+
+function deleteEntry(id) {
+  if (!confirm('Xoá ghi chú này?')) return
+  removeEntry(S.date, id)
+  draw()
+}
+
+function saveName() {
+  const n = val('sName').trim() || 'Bé'
+  store.setSettings({...store.getSettings(), babyName: n})
+  set({ babyName: n })
+}
+
+function exportData() {
+  const blob = new Blob([JSON.stringify({ babyName: S.babyName, logs: store.getLogs(), at: new Date().toISOString() }, null, 2)], {type:'application/json'})
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'baby-tracker-'+todayStr()+'.json' })
+  a.click()
+}
+
+function importFile(file) {
+  const r = new FileReader()
+  r.onload = e => {
+    try {
+      const d = JSON.parse(e.target.result)
+      if (d.logs) store.setLogs(d.logs)
+      if (d.babyName) { store.setSettings({...store.getSettings(), babyName: d.babyName}); S.babyName = d.babyName }
+      alert('Import thành công! 🎉')
+      draw()
+    } catch { alert('File không hợp lệ!') }
+  }
+  r.readAsText(file)
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER HELPERS
+// ═══════════════════════════════════════════════════════════════
+function cc(pairs) {  // color css
+  return Object.entries(pairs).map(([k,v])=>`${k}:${v}`).join(';')
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════════════════
+function draw() {
+  document.getElementById('app').innerHTML = html()
+}
+
+function html() {
+  return `
+<div style="min-height:100vh;background:#faf9f7;display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative;">
+  ${rHeader()}
+  <div style="flex:1;overflow-y:auto;padding-bottom:72px;">
+    ${S.tab==='today'    ? rToday()    : ''}
+    ${S.tab==='history'  ? rHistory()  : ''}
+    ${S.tab==='settings' ? rSettings() : ''}
+  </div>
+  ${rBottomNav()}
+  ${S.modal ? rModal() : ''}
+</div>`
+}
+
+// ── Header ─────────────────────────────────────────────────────
+function rHeader() {
+  const isToday = S.date===todayStr()
+  return `
+<div style="background:white;border-bottom:1px solid #f3f4f6;padding:52px 16px 12px;position:sticky;top:0;z-index:20;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${S.tab==='today'?'10':'0'}px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="font-size:22px;">🍼</span>
+      <span style="font-size:18px;font-weight:800;color:#1f2937;">${S.babyName}</span>
+    </div>
+    <button onclick="openModal({mode:'add',actId:'feed'})"
+      style="background:#f43f5e;color:white;width:36px;height:36px;border-radius:50%;border:none;font-size:22px;cursor:pointer;box-shadow:0 2px 8px rgba(244,63,94,0.35);display:flex;align-items:center;justify-content:center;line-height:1;">+</button>
+  </div>
+  ${S.tab==='today' ? `
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <button onclick="set({date:shiftDate(S.date,-1)})"
+      style="width:32px;height:32px;border-radius:50%;background:#f3f4f6;border:none;font-size:18px;cursor:pointer;color:#374151;">‹</button>
+    <div style="text-align:center;">
+      <div style="font-weight:700;color:#1f2937;font-size:14px;">${fmtDateLong(S.date)}</div>
+      ${isToday?`<div style="font-size:11px;color:#f43f5e;font-weight:600;margin-top:1px;">Hôm nay</div>`:''}
+    </div>
+    <button onclick="${isToday?'':` set({date:shiftDate(S.date,1)})`}"
+      style="width:32px;height:32px;border-radius:50%;background:${isToday?'#f9fafb':'#f3f4f6'};border:none;font-size:18px;cursor:pointer;color:${isToday?'#d1d5db':'#374151'};"
+      ${isToday?'disabled':''}>›</button>
+  </div>
+  ` : ''}
+</div>`
+}
+
+// ── Today ───────────────────────────────────────────────────────
+function rToday() {
+  const logs    = logsForDate(S.date)
+  const isToday = S.date===todayStr()
+  return `
+<div style="padding-top:12px;">
+  ${S.timer && isToday ? rTimer() : ''}
+  ${isToday ? rQuickActions() : ''}
+  ${rSummary(logs)}
+  ${rTimeline(logs)}
+</div>`
+}
+
+function rTimer() {
+  const c = getClr(S.timer.actId)
+  const a = getAct(S.timer.actId)
+  return `
+<div style="margin:0 16px 12px;border-radius:18px;border:2px solid ${c.border};background:${c.bg};padding:14px 16px;display:flex;align-items:center;justify-content:space-between;">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span style="font-size:30px;">${a.emoji}</span>
+    <div>
+      <div style="font-size:11px;font-weight:700;color:${c.text};text-transform:uppercase;letter-spacing:.05em;">Đang ${a.label.toLowerCase()}...</div>
+      <div style="font-size:28px;font-family:monospace;font-weight:800;color:#111827;letter-spacing:.02em;">${fmtElapsed(S.elapsed)}</div>
+      <div style="font-size:11px;color:#6b7280;">Bắt đầu ${S.timer.startTime}</div>
+    </div>
+  </div>
+  <button onclick="timerStop()"
+    style="background:white;border:2px solid ${c.border};color:${c.text};font-weight:700;padding:9px 14px;border-radius:12px;cursor:pointer;font-size:13px;box-shadow:0 1px 3px rgba(0,0,0,.08);">
+    Dừng ✅
+  </button>
+</div>`
+}
+
+function rQuickActions() {
+  return `
+<div style="padding:0 16px 12px;">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+    ${ACTIVITIES.map(a => {
+      const active = S.timer?.actId===a.id
+      const c = getClr(a.id)
+      return `
+<button onclick="tapActivity(getAct('${a.id}'))"
+  style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 6px;border-radius:18px;border:2px solid ${active?c.border:'#e5e7eb'};background:${active?c.bg:'white'};cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:all .15s;">
+  <span style="font-size:28px;margin-bottom:4px;">${a.emoji}</span>
+  <span style="font-size:12px;font-weight:700;color:${active?c.text:'#4b5563'};">${a.label}</span>
+  ${active&&a.hasTimer?`<span style="font-size:10px;color:${c.text};margin-top:2px;font-weight:600;">● đang chạy</span>`:''}
+</button>`
+    }).join('')}
+  </div>
+</div>`
+}
+
+function rSummary(logs) {
+  if (!logs.length) return ''
+  const s = summary(logs)
+  const items = [
+    { e:'🍼', l:'Lần ăn',   v: s.feed   || '–' },
+    { e:'😴', l:'Tổng ngủ', v: s.sleep ? fmtDur(s.sleep) : '–' },
+    { e:'🚼', l:'Số tã',    v: s.diapers || '–' },
+    { e:'🎮', l:'Chơi',     v: s.play    || '–' },
+  ]
+  return `
+<div style="margin:0 16px 12px;background:white;border-radius:18px;border:1px solid #f3f4f6;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.04);">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+    ${items.map(i=>`
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <span style="font-size:20px;margin-bottom:2px;">${i.e}</span>
+      <span style="font-size:15px;font-weight:800;color:#111827;">${i.v}</span>
+      <span style="font-size:10px;color:#9ca3af;text-align:center;line-height:1.3;">${i.l}</span>
+    </div>`).join('')}
+  </div>
+</div>`
+}
+
+function rTimeline(logs) {
+  if (!logs.length) return `
+<div style="display:flex;flex-direction:column;align-items:center;padding:64px 16px;color:#9ca3af;">
+  <span style="font-size:52px;margin-bottom:12px;">🌸</span>
+  <p style="font-size:15px;font-weight:600;margin:0 0 4px;">Chưa có ghi chú nào</p>
+  <p style="font-size:13px;margin:0;">Nhấn nút bên trên để bắt đầu theo dõi</p>
+</div>`
+
+  return `
+<div style="padding:4px 16px 32px;">
+  <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Timeline hôm nay</div>
+  <div style="position:relative;">
+    <div style="position:absolute;left:22px;top:14px;bottom:14px;width:2px;background:#f0f0f0;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${logs.map(e => rEntry(e)).join('')}
+    </div>
+  </div>
+</div>`
+}
+
+function rEntry(e) {
+  const a = getAct(e.activityId)
+  if (!a) return ''
+  const c = getClr(e.activityId)
+  const entryJson = JSON.stringify(e).replace(/"/g,'&quot;')
+  return `
+<div style="display:flex;gap:10px;position:relative;">
+  <div style="width:44px;height:44px;flex-shrink:0;border-radius:50%;background:${c.dot};display:flex;align-items:center;justify-content:center;font-size:20px;z-index:1;border:3px solid white;box-shadow:0 1px 5px rgba(0,0,0,.12);">${a.emoji}</div>
+  <div style="flex:1;background:${c.bg};border:1.5px solid ${c.border};border-radius:14px;padding:10px 12px;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;">
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:3px;">
+          <span style="font-weight:700;font-size:13px;color:${c.text};">${a.label}</span>
+          ${e.duration>0 ? `<span style="font-size:11px;padding:1px 7px;border-radius:20px;background:${c.badge};color:${c.text};font-weight:600;">${fmtDur(e.duration)}</span>` : ''}
+          ${e.feedType ? `<span style="font-size:11px;padding:1px 7px;border-radius:20px;background:#fef9c3;color:#78350f;font-weight:500;">${ftLabel(e.feedType)}</span>` : ''}
+          ${e.amount>0 ? `<span style="font-size:11px;padding:1px 7px;border-radius:20px;background:#fef9c3;color:#78350f;font-weight:500;">${e.amount}ml</span>` : ''}
+        </div>
+        <div style="font-size:12px;color:#6b7280;font-family:monospace;">
+          ${e.startTime}${e.endTime&&e.endTime!==e.startTime?' → '+e.endTime:''}
+        </div>
+        ${e.note ? `<div style="font-size:12px;color:#6b7280;margin-top:3px;font-style:italic;">💬 ${e.note}</div>` : ''}
+      </div>
+      <div style="display:flex;gap:1px;flex-shrink:0;">
+        <button onclick="openModal({mode:'edit',actId:'${e.activityId}',entry:JSON.parse(this.dataset.e)})" data-e="${entryJson}"
+          style="background:none;border:none;cursor:pointer;padding:5px;border-radius:8px;font-size:14px;" title="Sửa">✏️</button>
+        <button onclick="deleteEntry('${e.id}')"
+          style="background:none;border:none;cursor:pointer;padding:5px;border-radius:8px;font-size:14px;" title="Xoá">🗑️</button>
+      </div>
+    </div>
+  </div>
+</div>`
+}
+
+// ── History ─────────────────────────────────────────────────────
+function rHistory() {
+  const dates = logDates()
+  if (!dates.length) return `
+<div style="display:flex;flex-direction:column;align-items:center;padding:80px 16px;color:#9ca3af;">
+  <span style="font-size:52px;margin-bottom:12px;">📅</span>
+  <p style="font-size:15px;font-weight:600;margin:0;">Chưa có lịch sử</p>
+  <p style="font-size:13px;margin-top:4px;">Bắt đầu theo dõi hôm nay nhé!</p>
+</div>`
+
+  return `
+<div style="padding:16px;">
+  <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">${dates.length} ngày có dữ liệu</div>
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    ${dates.map(d => {
+      const logs = logsForDate(d)
+      const s    = summary(logs)
+      const today = d===todayStr()
+      return `
+<button onclick="set({tab:'today',date:'${d}'})"
+  style="background:white;border:1.5px solid ${today?'#fda4af':'#f3f4f6'};border-radius:16px;padding:14px 16px;text-align:left;cursor:pointer;width:100%;box-shadow:0 1px 4px rgba(0,0,0,.04);">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+    <div style="display:flex;align-items:center;gap:6px;">
+      <span style="font-weight:700;color:#1f2937;font-size:14px;">${fmtDateLong(d)}</span>
+      ${today?`<span style="font-size:10px;background:#fee2e2;color:#f43f5e;padding:1px 8px;border-radius:20px;font-weight:700;">Hôm nay</span>`:''}
+    </div>
+    <span style="color:#9ca3af;font-size:18px;">›</span>
+  </div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;">
+    ${s.feed    ? `<span style="font-size:12px;color:#6b7280;">🍼 ${s.feed} lần</span>` : ''}
+    ${s.sleep   ? `<span style="font-size:12px;color:#6b7280;">😴 ${fmtDur(s.sleep)}</span>` : ''}
+    ${s.diapers ? `<span style="font-size:12px;color:#6b7280;">🚼 ${s.diapers} tã</span>` : ''}
+    ${s.play    ? `<span style="font-size:12px;color:#6b7280;">🎮 ${s.play} lần</span>` : ''}
+    ${!s.feed&&!s.sleep&&!s.diapers&&!s.play ? `<span style="font-size:12px;color:#d1d5db;">Không có dữ liệu</span>` : ''}
+  </div>
+</button>`
+    }).join('')}
+  </div>
+</div>`
+}
+
+// ── Settings ────────────────────────────────────────────────────
+function rSettings() {
+  const all  = store.getLogs()
+  const days = Object.keys(all).length
+  const totalEntries = Object.values(all).reduce((s,arr)=>s+arr.length, 0)
+  return `
+<div style="padding:16px;">
+  <div style="background:white;border-radius:18px;border:1px solid #f3f4f6;overflow:hidden;margin-bottom:12px;">
+    <div style="padding:16px;">
+      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:8px;">👶 Tên bé</div>
+      <div style="display:flex;gap:8px;">
+        <input id="sName" value="${S.babyName}"
+          style="flex:1;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 12px;font-size:14px;outline:none;font-weight:600;" />
+        <button onclick="saveName()"
+          style="background:#f43f5e;color:white;border:none;border-radius:12px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;">Lưu</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:white;border-radius:18px;border:1px solid #f3f4f6;overflow:hidden;margin-bottom:12px;">
+    <div style="padding:14px 16px;border-bottom:1px solid #f9fafb;">
+      <div style="font-size:12px;color:#9ca3af;margin-bottom:2px;">Dữ liệu đã lưu</div>
+      <div style="font-size:14px;font-weight:700;color:#1f2937;">${days} ngày · ${totalEntries} lần ghi</div>
+    </div>
+    <div style="padding:14px 16px;border-bottom:1px solid #f9fafb;">
+      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:4px;">💾 Xuất dữ liệu (Backup)</div>
+      <div style="font-size:12px;color:#9ca3af;margin-bottom:10px;">Lưu file JSON về máy để không mất data</div>
+      <button onclick="exportData()"
+        style="background:#f0fdf4;border:1.5px solid #22c55e;color:#14532d;border-radius:12px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;width:100%;">
+        📤 Xuất dữ liệu
+      </button>
+    </div>
+    <div style="padding:14px 16px;">
+      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:4px;">📂 Nhập dữ liệu (Restore)</div>
+      <div style="font-size:12px;color:#9ca3af;margin-bottom:10px;">Khôi phục từ file backup</div>
+      <label style="display:block;background:#eff6ff;border:1.5px solid #3b82f6;color:#1e3a8a;border-radius:12px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;">
+        📥 Chọn file JSON
+        <input type="file" accept=".json" onchange="importFile(this.files[0])" style="display:none;" />
+      </label>
+    </div>
+  </div>
+
+  <div style="background:white;border-radius:18px;border:1px solid #f3f4f6;overflow:hidden;margin-bottom:24px;">
+    <div style="padding:14px 16px;">
+      <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:4px;">🗑️ Xoá toàn bộ dữ liệu</div>
+      <div style="font-size:12px;color:#9ca3af;margin-bottom:10px;">Không thể hoàn tác sau khi xoá</div>
+      <button onclick="if(confirm('Xoá toàn bộ? Không hoàn tác được!')){store.setLogs({});draw()}"
+        style="background:#fff1f2;border:1.5px solid #fca5a5;color:#ef4444;border-radius:12px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;width:100%;">
+        Xoá tất cả
+      </button>
+    </div>
+  </div>
+
+  <div style="text-align:center;color:#d1d5db;font-size:12px;">Baby Tracker 🍼 · Made with ❤️ for Bé</div>
+</div>`
+}
+
+// ── Modal ────────────────────────────────────────────────────────
+function rModal() {
+  const m      = S.modal
+  const isEdit = m.mode==='edit'
+  const entry  = m.entry
+  const actId  = m.actId || entry?.activityId || 'feed'
+  const a      = getAct(actId)
+  const f      = m._f || {}
+  const sv     = (k, fb) => f[k] !== undefined ? f[k] : (entry?.[k] ?? fb)
+
+  const startVal   = sv('startTime', nowS())
+  const endVal     = sv('endTime',   nowS())
+  const noteVal    = sv('note',      '')
+  const feedTVal   = sv('feedType',  'breast_left')
+  const amountVal  = sv('amount',    '')
+  const isBottle   = feedTVal==='bottle'
+
+  return `
+<div onclick="closeModal()"
+  style="position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:flex;align-items:flex-end;justify-content:center;">
+  <div onclick="event.stopPropagation()" class="slide-up"
+    style="background:white;border-radius:24px 24px 0 0;padding:20px 20px 36px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;">
+
+    <div style="width:40px;height:4px;background:#e5e7eb;border-radius:4px;margin:0 auto 16px;"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+      <h2 style="font-size:17px;font-weight:800;color:#111827;margin:0;">${isEdit?'Chỉnh sửa ghi chú':'Thêm hoạt động'}</h2>
+      <button onclick="closeModal()" style="background:#f3f4f6;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;color:#6b7280;">×</button>
+    </div>
+
+    <!-- Activity grid -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Hoạt động</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        ${ACTIVITIES.map(act => {
+          const sel = act.id===actId
+          const c   = getClr(act.id)
+          return `
+<button onclick="selectAct('${act.id}')"
+  style="display:flex;flex-direction:column;align-items:center;padding:10px 4px;border-radius:14px;border:2px solid ${sel?c.border:'#e5e7eb'};background:${sel?c.bg:'white'};cursor:pointer;transition:all .1s;">
+  <span style="font-size:22px;margin-bottom:2px;">${act.emoji}</span>
+  <span style="font-size:11px;font-weight:700;color:${sel?c.text:'#6b7280'};">${act.label}</span>
+</button>`
+        }).join('')}
+      </div>
+    </div>
+
+    <!-- Time -->
+    <div style="display:grid;grid-template-columns:${a.hasTimer?'1fr 1fr':'1fr'};gap:10px;margin-bottom:14px;">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Bắt đầu</div>
+        <input type="time" id="mStart" value="${startVal}"
+          style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:15px;font-family:monospace;outline:none;" />
+      </div>
+      ${a.hasTimer ? `
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Kết thúc</div>
+        <input type="time" id="mEnd" value="${endVal}"
+          style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:15px;font-family:monospace;outline:none;" />
+      </div>` : ''}
+    </div>
+
+    <!-- Feed type -->
+    ${actId==='feed' ? `
+    <div style="margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Loại ăn</div>
+      <input type="hidden" id="mFT" value="${feedTVal}" />
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        ${FEED_TYPES.map(f2 => {
+          const sel2 = f2.id===feedTVal
+          return `<button onclick="selectFT('${f2.id}')"
+            style="padding:6px 12px;border-radius:20px;border:1.5px solid ${sel2?'#f59e0b':'#e5e7eb'};background:${sel2?'#fffbeb':'white'};color:${sel2?'#78350f':'#6b7280'};font-size:12px;font-weight:600;cursor:pointer;">${f2.label}</button>`
+        }).join('')}
+      </div>
+      <div id="mAmtRow" style="${isBottle?'':'display:none;'}margin-top:8px;">
+        <input type="number" id="mAmt" value="${amountVal}" placeholder="Số ml (tuỳ chọn)"
+          style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 12px;font-size:14px;outline:none;" />
+      </div>
+    </div>` : '<input type="hidden" id="mFT" value="" />'}
+
+    <!-- Note -->
+    <div style="margin-bottom:18px;">
+      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Ghi chú</div>
+      <input type="text" id="mNote" value="${noteVal}" placeholder="Thêm ghi chú..."
+        style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:14px;outline:none;" />
+    </div>
+
+    <button onclick="submitModal()"
+      style="width:100%;background:#f43f5e;color:white;border:none;border-radius:20px;padding:15px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(244,63,94,.3);">
+      ${isEdit?'Lưu thay đổi':'Lưu hoạt động'}
+    </button>
+  </div>
+</div>`
+}
+
+// ── Bottom nav ───────────────────────────────────────────────────
+function rBottomNav() {
+  const tabs = [
+    { id:'today',    e:'🏠', l:'Hôm nay'  },
+    { id:'history',  e:'📅', l:'Lịch sử'  },
+    { id:'settings', e:'⚙️', l:'Cài đặt'  },
+  ]
+  return `
+<div style="position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #f3f4f6;display:flex;z-index:10;max-width:480px;margin:0 auto;padding-bottom:env(safe-area-inset-bottom);">
+  ${tabs.map(t=>`
+  <button onclick="set({tab:'${t.id}'})"
+    style="flex:1;padding:10px 0 14px;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;">
+    <span style="font-size:22px;">${t.e}</span>
+    <span style="font-size:11px;font-weight:${S.tab===t.id?'800':'500'};color:${S.tab===t.id?'#f43f5e':'#9ca3af'};">${t.l}</span>
+  </button>`).join('')}
+</div>`
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INIT — expose globals for inline onclick
+// ═══════════════════════════════════════════════════════════════
+Object.assign(window, {
+  set, openModal, closeModal, submitModal,
+  selectAct, selectFT, tapActivity, timerStop,
+  deleteEntry, saveName, exportData, importFile,
+  getAct, getClr, shiftDate, store, draw,
+})
+
+// Restore timer on page load
+const saved = store.getTimer()
+if (saved) {
+  S.timer  = saved
+  S.elapsed = Math.floor((Date.now()-saved.ts)/1000)
+  tickStart()
+}
+
+draw()
+</script>
+</body>
+</html>
