@@ -4,31 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Baby Tracker 🍼</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Baby Tracker" />
+  <link rel="apple-touch-icon" href="data:image/png;base64,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" />
+  <link rel="icon" type="image/png" href="data:image/png;base64,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" />
   <style>
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
-    body { background: #faf9f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; }
-    input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.5; cursor: pointer; }
-    .slide-up { animation: slideUp 0.25s ease; }
-    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    body { background:#faf9f7; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; margin:0; }
+    input[type="time"]::-webkit-calendar-picker-indicator { opacity:.5; cursor:pointer; }
+    .slide-up { animation:slideUp .25s ease; }
+    @keyframes slideUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
+    .pulse { animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
   </style>
 </head>
 <body>
 <div id="app"></div>
-
 <script>
 // ═══════════════════════════════════════════════════════════════
 // CONSTANTS
 // ═══════════════════════════════════════════════════════════════
 const ACTIVITIES = [
-  { id: 'feed',         label: 'Ăn',      emoji: '🍼', hasTimer: true,  clr: 'amber'  },
-  { id: 'sleep',        label: 'Ngủ',     emoji: '😴', hasTimer: true,  clr: 'blue'   },
-  { id: 'play',         label: 'Chơi',    emoji: '🎮', hasTimer: true,  clr: 'green'  },
-  { id: 'bath',         label: 'Tắm',     emoji: '🛁', hasTimer: false, clr: 'cyan'   },
-  { id: 'diaper_wet',   label: 'Tã ướt',  emoji: '💧', hasTimer: false, clr: 'sky'    },
-  { id: 'diaper_dirty', label: 'Tã bẩn',  emoji: '💩', hasTimer: false, clr: 'orange' },
+  { id:'feed',         label:'Ăn',      emoji:'🍼', hasTimer:true,  clr:'amber'  },
+  { id:'sleep',        label:'Ngủ',     emoji:'😴', hasTimer:true,  clr:'blue'   },
+  { id:'play',         label:'Chơi',    emoji:'🎮', hasTimer:true,  clr:'green'  },
+  { id:'bath',         label:'Tắm',     emoji:'🛁', hasTimer:false, clr:'cyan'   },
+  { id:'diaper_wet',   label:'Tã ướt',  emoji:'💧', hasTimer:false, clr:'sky'    },
+  { id:'diaper_dirty', label:'Tã bẩn',  emoji:'💩', hasTimer:false, clr:'orange' },
 ]
-
 const CLR = {
   amber:  { bg:'#fffbeb', border:'#f59e0b', text:'#78350f', badge:'#fef3c7', dot:'#f59e0b' },
   blue:   { bg:'#eff6ff', border:'#3b82f6', text:'#1e3a8a', badge:'#dbeafe', dot:'#3b82f6' },
@@ -37,98 +41,251 @@ const CLR = {
   sky:    { bg:'#f0f9ff', border:'#0ea5e9', text:'#0c4a6e', badge:'#e0f2fe', dot:'#0ea5e9' },
   orange: { bg:'#fff7ed', border:'#f97316', text:'#7c2d12', badge:'#ffedd5', dot:'#f97316' },
 }
-
 const FEED_TYPES = [
-  { id: 'breast_left',  label: 'Bú trái'  },
-  { id: 'breast_right', label: 'Bú phải'  },
-  { id: 'both',         label: 'Hai bên'  },
-  { id: 'bottle',       label: 'Bình sữa' },
-  { id: 'solid',        label: 'Ăn dặm'   },
+  { id:'breast_left',  label:'Bú trái'  },
+  { id:'breast_right', label:'Bú phải'  },
+  { id:'both',         label:'Hai bên'  },
+  { id:'bottle',       label:'Bình sữa' },
+  { id:'solid',        label:'Ăn dặm'   },
+]
+
+// Chuẩn WHO + AAP cho 6 tháng đầu — sleep tính bằng phút
+const STANDARDS = {
+  1: { feedMin:8,  feedMax:12, sleepMin:840, sleepMax:1020, wakeMin:45,  wakeMax:60,  diaperMin:6, diaperMax:8, label:'Tháng 1' },
+  2: { feedMin:8,  feedMax:12, sleepMin:840, sleepMax:1020, wakeMin:60,  wakeMax:90,  diaperMin:6, diaperMax:8, label:'Tháng 2' },
+  3: { feedMin:7,  feedMax:9,  sleepMin:840, sleepMax:1020, wakeMin:60,  wakeMax:90,  diaperMin:6, diaperMax:8, label:'Tháng 3' },
+  4: { feedMin:6,  feedMax:8,  sleepMin:720, sleepMax:960,  wakeMin:90,  wakeMax:120, diaperMin:6, diaperMax:8, label:'Tháng 4' },
+  5: { feedMin:6,  feedMax:8,  sleepMin:720, sleepMax:960,  wakeMin:90,  wakeMax:150, diaperMin:6, diaperMax:8, label:'Tháng 5' },
+  6: { feedMin:5,  feedMax:7,  sleepMin:720, sleepMax:960,  wakeMin:120, wakeMax:180, diaperMin:6, diaperMax:8, label:'Tháng 6' },
+}
+
+// Lịch mẫu dựng sẵn theo giai đoạn tháng tuổi — giúp tạo lịch sinh hoạt nhanh, không phải làm từ đầu.
+// Người dùng có thể "Dùng mẫu này" rồi chỉnh sửa lại giờ giấc/thời lượng cho phù hợp với bé.
+const PRESET_SCHEDULES = [
+  {
+    id: 'preset_0_2', badge: '0-2 tháng', name: 'Lịch sơ sinh (0-2 tháng)',
+    note: 'Ăn ~2-2.5h/lần, ngủ nhiều giấc ngắn, wake window 45-60 phút',
+    entries: [
+      {time:'06:00', activityId:'feed',  duration:0,  feedType:'breast_left'},
+      {time:'06:45', activityId:'play',  duration:15},
+      {time:'07:00', activityId:'sleep', duration:75},
+      {time:'08:15', activityId:'feed',  duration:0,  feedType:'breast_right'},
+      {time:'09:00', activityId:'sleep', duration:75},
+      {time:'10:15', activityId:'feed',  duration:0,  feedType:'breast_left'},
+      {time:'10:45', activityId:'sleep', duration:75},
+      {time:'12:00', activityId:'feed',  duration:0,  feedType:'breast_right'},
+      {time:'12:45', activityId:'play',  duration:15},
+      {time:'13:00', activityId:'sleep', duration:90},
+      {time:'14:30', activityId:'feed',  duration:0,  feedType:'breast_left'},
+      {time:'15:00', activityId:'sleep', duration:75},
+      {time:'16:15', activityId:'feed',  duration:0,  feedType:'breast_right'},
+      {time:'17:00', activityId:'sleep', duration:60},
+      {time:'18:00', activityId:'bath',  duration:15},
+      {time:'18:30', activityId:'feed',  duration:0,  feedType:'breast_left'},
+      {time:'19:30', activityId:'sleep', duration:600},
+      {time:'23:00', activityId:'feed',  duration:0,  feedType:'breast_right'},
+      {time:'02:30', activityId:'feed',  duration:0,  feedType:'breast_left'},
+    ],
+  },
+  {
+    id: 'preset_3_4', badge: '3-4 tháng', name: 'Lịch 3-4 tháng',
+    note: 'Ăn ~3-3.5h/lần, 3-4 giấc ngủ ngày, wake window 90-120 phút',
+    entries: [
+      {time:'06:30', activityId:'feed',  duration:0,  feedType:'bottle'},
+      {time:'07:15', activityId:'play',  duration:30},
+      {time:'08:00', activityId:'sleep', duration:90},
+      {time:'09:30', activityId:'feed',  duration:0,  feedType:'bottle'},
+      {time:'10:15', activityId:'play',  duration:45},
+      {time:'11:00', activityId:'sleep', duration:90},
+      {time:'12:30', activityId:'feed',  duration:0,  feedType:'bottle'},
+      {time:'13:15', activityId:'play',  duration:30},
+      {time:'14:00', activityId:'sleep', duration:90},
+      {time:'15:30', activityId:'feed',  duration:0,  feedType:'bottle'},
+      {time:'16:15', activityId:'play',  duration:45},
+      {time:'17:00', activityId:'bath',  duration:15},
+      {time:'17:30', activityId:'feed',  duration:0,  feedType:'bottle'},
+      {time:'18:30', activityId:'sleep', duration:660},
+      {time:'22:00', activityId:'feed',  duration:0,  feedType:'bottle'},
+    ],
+  },
+  {
+    id: 'preset_5_6', badge: '5-6 tháng', name: 'Lịch 5-6 tháng',
+    note: 'Ăn ~4h/lần, có thể bắt đầu ăn dặm, 2-3 giấc ngủ ngày, wake window 120-180 phút',
+    entries: [
+      {time:'06:00', activityId:'feed',  duration:0,  feedType:'bottle'},
+      {time:'07:00', activityId:'play',  duration:45},
+      {time:'08:00', activityId:'sleep', duration:90},
+      {time:'09:30', activityId:'feed',  duration:0,  feedType:'solid'},
+      {time:'10:15', activityId:'play',  duration:60},
+      {time:'11:30', activityId:'sleep', duration:90},
+      {time:'13:00', activityId:'feed',  duration:0,  feedType:'bottle'},
+      {time:'14:00', activityId:'play',  duration:60},
+      {time:'15:30', activityId:'sleep', duration:60},
+      {time:'16:30', activityId:'bath',  duration:15},
+      {time:'17:00', activityId:'feed',  duration:0,  feedType:'solid'},
+      {time:'18:00', activityId:'play',  duration:30},
+      {time:'19:00', activityId:'sleep', duration:660},
+      {time:'21:30', activityId:'feed',  duration:0,  feedType:'bottle'},
+    ],
+  },
+]
+
+
+// ── WHO Growth Standards [P3, P50, P97] ──────────────────────────
+const WHO = {
+  weight:{
+    girl:{ 0:[2.4,3.2,4.2],1:[3.2,4.2,5.5],2:[3.9,5.1,6.6],3:[4.5,5.8,7.5],4:[5.0,6.4,8.1],5:[5.4,6.9,8.8],6:[5.7,7.3,9.3] },
+    boy: { 0:[2.5,3.3,4.4],1:[3.4,4.5,5.8],2:[4.3,5.6,7.1],3:[5.0,6.4,8.0],4:[5.5,7.0,8.7],5:[5.9,7.5,9.3],6:[6.3,7.9,9.8] },
+  },
+  height:{
+    girl:{ 0:[45.6,49.1,52.7],1:[50.0,53.7,57.4],2:[53.2,57.1,61.1],3:[55.8,59.8,63.9],4:[57.8,62.1,66.4],5:[59.6,64.0,68.5],6:[61.2,65.7,70.2] },
+    boy: { 0:[46.1,49.9,53.7],1:[50.8,54.7,58.6],2:[54.4,58.4,62.4],3:[57.3,61.4,65.5],4:[59.7,63.9,68.0],5:[61.7,65.9,70.1],6:[63.3,67.6,71.9] },
+  },
+}
+const VACCINE_SCHEDULE = [
+  { id:'bcg',     name:'BCG (Lao)',               months:0,  tag:'TCMR' },
+  { id:'hepb0',   name:'Viêm gan B mũi 1',        months:0,  tag:'TCMR', note:'Trong 24h sau sinh' },
+  { id:'combo1',  name:'5-in-1 mũi 1',            months:2,  tag:'TCMR' },
+  { id:'pcv1',    name:'PCV13 mũi 1',             months:2,  tag:'DV'   },
+  { id:'rota1',   name:'Rotavirus mũi 1',          months:2,  tag:'DV'   },
+  { id:'combo2',  name:'5-in-1 mũi 2',            months:3,  tag:'TCMR' },
+  { id:'pcv2',    name:'PCV13 mũi 2',             months:3,  tag:'DV'   },
+  { id:'rota2',   name:'Rotavirus mũi 2',          months:3,  tag:'DV'   },
+  { id:'combo3',  name:'5-in-1 mũi 3',            months:4,  tag:'TCMR' },
+  { id:'pcv3',    name:'PCV13 mũi 3',             months:4,  tag:'DV'   },
+  { id:'hepb3',   name:'Viêm gan B mũi 3',        months:6,  tag:'TCMR' },
+  { id:'flu1',    name:'Cúm mũi 1',               months:6,  tag:'DV'   },
+  { id:'measles', name:'Sởi mũi 1',               months:9,  tag:'TCMR' },
+  { id:'mmr',     name:'Sởi - Quai bị - Rubella', months:12, tag:'DV'   },
+  { id:'combo4',  name:'5-in-1 mũi nhắc',         months:18, tag:'TCMR' },
+  { id:'sr',      name:'Sởi - Rubella (SR)',       months:18, tag:'TCMR' },
+]
+const SYMPTOMS = ['Sốt','Ho','Sổ mũi','Nôn trớ','Tiêu chảy','Phát ban','Quấy khóc','Bỏ bú','Khác']
+const MOOD_LEVELS = [
+  {score:1,emoji:'😢',label:'Rất mệt',   clr:'#ef4444'},
+  {score:2,emoji:'😟',label:'Khó chịu',  clr:'#f97316'},
+  {score:3,emoji:'😐',label:'Bình thường',clr:'#eab308'},
+  {score:4,emoji:'🙂',label:'Ổn',        clr:'#22c55e'},
+  {score:5,emoji:'😊',label:'Vui vẻ',    clr:'#3b82f6'},
 ]
 
 const getAct  = (id) => ACTIVITIES.find(a => a.id === id)
 const getClr  = (id) => CLR[getAct(id)?.clr] || CLR.blue
 const ftLabel = (id) => FEED_TYPES.find(f => f.id === id)?.label || ''
+const isBreast = (ft) => ft === 'breast_left' || ft === 'breast_right'
 
 // ═══════════════════════════════════════════════════════════════
-// STORAGE
+// STORAGE — keys không được đổi
 // ═══════════════════════════════════════════════════════════════
-const K = { logs: 'bt_logs', timer: 'bt_timer', settings: 'bt_settings' }
-
+const K = { logs:'bt_logs', timer:'bt_timer', settings:'bt_settings', schedules:'bt_schedules', growth:'bt_growth', health:'bt_health', vaccines:'bt_vaccines', mood:'bt_mood' }
+// Bọc localStorage.setItem để không crash khi bộ nhớ đầy hoặc bị chặn
+// (ví dụ Safari chế độ duyệt web riêng tư) — báo cho người dùng biết thay vì mất dữ liệu âm thầm.
+let _storageWarned = false
+function safeSetItem(key, value) {
+  try { localStorage.setItem(key, value); return true }
+  catch(err) {
+    console.error('Lưu thất bại:', key, err)
+    if(!_storageWarned) {
+      _storageWarned = true
+      alert('⚠️ Không lưu được dữ liệu vào máy! Bộ nhớ trình duyệt có thể đã đầy hoặc bị chặn (ví dụ chế độ duyệt web riêng tư). Hãy xuất dữ liệu ra file JSON ngay để không bị mất, và tránh dùng chế độ riêng tư cho app này.')
+    }
+    return false
+  }
+}
 const store = {
-  getLogs:     ()  => { try { return JSON.parse(localStorage.getItem(K.logs)||'{}') } catch { return {} } },
-  setLogs:     (v) => localStorage.setItem(K.logs, JSON.stringify(v)),
-  getTimer:    ()  => { try { return JSON.parse(localStorage.getItem(K.timer)||'null') } catch { return null } },
-  setTimer:    (v) => v ? localStorage.setItem(K.timer, JSON.stringify(v)) : localStorage.removeItem(K.timer),
-  getSettings: ()  => { try { return JSON.parse(localStorage.getItem(K.settings)||'{}') } catch { return {} } },
-  setSettings: (v) => localStorage.setItem(K.settings, JSON.stringify(v)),
+  getLogs:      ()  => { try{ return JSON.parse(localStorage.getItem(K.logs)||'{}') }catch{ return {} } },
+  setLogs:      (v) => safeSetItem(K.logs, JSON.stringify(v)),
+  getTimer:     ()  => { try{ return JSON.parse(localStorage.getItem(K.timer)||'null') }catch{ return null } },
+  setTimer:     (v) => v ? safeSetItem(K.timer,JSON.stringify(v)) : (()=>{ try{ localStorage.removeItem(K.timer) }catch(err){ console.error(err) } })(),
+  getSettings:  ()  => { try{ return JSON.parse(localStorage.getItem(K.settings)||'{}') }catch{ return {} } },
+  setSettings:  (v) => safeSetItem(K.settings, JSON.stringify(v)),
+  getSchedules: ()  => { try{ return JSON.parse(localStorage.getItem(K.schedules)||'[]') }catch{ return [] } },
+  setSchedules: (v) => safeSetItem(K.schedules, JSON.stringify(v)),
+  getGrowth:    ()  => { try{ return JSON.parse(localStorage.getItem(K.growth)||'[]') }catch{ return [] } },
+  setGrowth:    (v) => safeSetItem(K.growth, JSON.stringify(v)),
+  getHealth:    ()  => { try{ return JSON.parse(localStorage.getItem(K.health)||'[]') }catch{ return [] } },
+  setHealth:    (v) => safeSetItem(K.health, JSON.stringify(v)),
+  getVaccines:  ()  => { try{ return JSON.parse(localStorage.getItem(K.vaccines)||'{}') }catch{ return {} } },
+  setVaccines:  (v) => safeSetItem(K.vaccines, JSON.stringify(v)),
+  getMood:      ()  => { try{ return JSON.parse(localStorage.getItem(K.mood)||'[]') }catch{ return [] } },
+  setMood:      (v) => safeSetItem(K.mood, JSON.stringify(v)),
 }
-
-function logsForDate(d) {
-  return (store.getLogs()[d] || []).sort((a,b) => a.startTime.localeCompare(b.startTime))
-}
-function logDates() {
-  return Object.keys(store.getLogs()).sort().reverse()
+function logsForDate(d) { return (store.getLogs()[d]||[]).sort((a,b)=>a.startTime.localeCompare(b.startTime)) }
+function logDates()     { return Object.keys(store.getLogs()).sort().reverse() }
+// Gồm cả phiên đang chạy (chưa bấm Dừng) vào dữ liệu của ngày đó, để các bảng tổng kết
+// (Hôm nay / Theo ngày / Tuần) phản ánh đúng những gì đang diễn ra ngay lúc này,
+// thay vì phải đợi bấm "Dừng ✅" mới được tính.
+function effectiveLogsForDate(d) {
+  const logs = logsForDate(d)
+  if (S.timer && S.timer.date === d) {
+    const liveDur = Math.max(0, Math.floor((Date.now()-S.timer.ts)/60000))
+    return [...logs, { id:'_live', activityId:S.timer.actId, startTime:S.timer.startTime, endTime:nowS(), duration:liveDur, note:'', inProgress:true }]
+  }
+  return logs
 }
 function upsertEntry(dateStr, entry) {
   const all = store.getLogs()
   if (!all[dateStr]) all[dateStr] = []
-  const i = all[dateStr].findIndex(e => e.id === entry.id)
-  if (i >= 0) all[dateStr][i] = entry; else all[dateStr].push(entry)
+  const i = all[dateStr].findIndex(e=>e.id===entry.id)
+  if (i>=0) all[dateStr][i]=entry; else all[dateStr].push(entry)
   store.setLogs(all)
 }
 function removeEntry(dateStr, id) {
   const all = store.getLogs()
   if (!all[dateStr]) return
-  all[dateStr] = all[dateStr].filter(e => e.id !== id)
+  all[dateStr] = all[dateStr].filter(e=>e.id!==id)
   store.setLogs(all)
 }
 
 // ═══════════════════════════════════════════════════════════════
 // UTILS
 // ═══════════════════════════════════════════════════════════════
-const uid  = () => Date.now() + '_' + Math.random().toString(36).slice(2,6)
+const uid  = () => Date.now()+'_'+Math.random().toString(36).slice(2,6)
 const pad  = (n) => String(n).padStart(2,'0')
 const nowS = () => { const d=new Date(); return pad(d.getHours())+':'+pad(d.getMinutes()) }
-
-function todayStr() {
-  const d = new Date()
-  return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())
-}
-function shiftDate(s, delta) {
-  const [y,mo,d] = s.split('-').map(Number)
-  const dt = new Date(y, mo-1, d)
-  dt.setDate(dt.getDate() + delta)
+// Escape HTML — bắt buộc dùng cho MỌI text do người dùng nhập trước khi chèn vào template HTML
+// (tên bé, ghi chú, tên lịch mẫu...), để tránh chèn được thẻ <script>/onerror=... (XSS).
+const ESC_MAP = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}
+function esc(s) { return String(s??'').replace(/[&<>"']/g, c=>ESC_MAP[c]) }
+function todayStr() { const d=new Date(); return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()) }
+function shiftDate(s,delta) {
+  const [y,mo,d]=s.split('-').map(Number), dt=new Date(y,mo-1,d)
+  dt.setDate(dt.getDate()+delta)
   return dt.getFullYear()+'-'+pad(dt.getMonth()+1)+'-'+pad(dt.getDate())
 }
-function calcDur(start, end) {
-  const [sh,sm] = start.split(':').map(Number)
-  const [eh,em] = end.split(':').map(Number)
-  let d = (eh*60+em)-(sh*60+sm)
-  return d < 0 ? d+1440 : d
+function calcDur(start,end) {
+  const [sh,sm]=start.split(':').map(Number),[eh,em]=end.split(':').map(Number)
+  let d=(eh*60+em)-(sh*60+sm); return d<0?d+1440:d
+}
+function addMins(timeStr,mins) {
+  const [h,m]=timeStr.split(':').map(Number),total=(h*60+m+mins)%1440
+  return pad(Math.floor(total/60))+':'+pad(total%60)
 }
 function fmtDur(m) {
-  if (!m || m<=0) return ''
-  const h=Math.floor(m/60), mn=m%60
-  if (h===0) return mn+'phút'
-  if (mn===0) return h+'h'
-  return h+'h'+pad(mn)
+  if(!m||m<=0) return ''
+  const h=Math.floor(m/60),mn=m%60
+  if(h===0) return mn+'phút'; if(mn===0) return h+'h'; return h+'h'+pad(mn)
 }
 function fmtElapsed(s) {
-  const h=Math.floor(s/3600), m=Math.floor((s%3600)/60), sec=s%60
-  return h>0 ? h+':'+pad(m)+':'+pad(sec) : pad(m)+':'+pad(sec)
+  const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60
+  return h>0?h+':'+pad(m)+':'+pad(sec):pad(m)+':'+pad(sec)
 }
 function fmtDate(s) {
-  const [y,mo,d] = s.split('-').map(Number)
-  const dt = new Date(y,mo-1,d)
+  const [y,mo,d]=s.split('-').map(Number),dt=new Date(y,mo-1,d)
   const days=['CN','T.2','T.3','T.4','T.5','T.6','T.7']
   return days[dt.getDay()]+', '+d+'/'+mo
 }
 function fmtDateLong(s) {
-  const [y,mo,d] = s.split('-').map(Number)
-  const dt = new Date(y,mo-1,d)
+  const [y,mo,d]=s.split('-').map(Number),dt=new Date(y,mo-1,d)
   const days=['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7']
   return days[dt.getDay()]+', '+d+'/'+mo+'/'+y
+}
+function fmtAgo(ts) {
+  const mins = Math.floor((Date.now()-ts)/60000)
+  if (mins < 1)  return 'vừa xong'
+  if (mins < 60) return mins+'p trước'
+  const h=Math.floor(mins/60),m=mins%60
+  return m>0 ? h+'h '+m+'p trước' : h+'h trước'
 }
 function summary(logs) {
   return {
@@ -138,293 +295,1135 @@ function summary(logs) {
     play:    logs.filter(l=>l.activityId==='play').length,
   }
 }
+function statusOf(val, min, max) {
+  if (val >= min && val <= max) return 'green'
+  if (val >= min*0.8 && val <= max*1.2) return 'yellow'
+  return 'red'
+}
+const STATUS_CLR = {
+  green:  { bg:'#f0fdf4', border:'#22c55e', text:'#14532d', icon:'✅' },
+  yellow: { bg:'#fefce8', border:'#eab308', text:'#713f12', icon:'🟡' },
+  red:    { bg:'#fff1f2', border:'#f43f5e', text:'#9f1239', icon:'🔴' },
+}
+
+// Weekly data helpers
+function getWeekDates() {
+  const today=todayStr(), dates=[]
+  for(let i=6;i>=0;i--) dates.push(shiftDate(today,-i))
+  return dates
+}
+function weeklyStats() {
+  const dates=getWeekDates()
+  const withData=dates.map(d=>{
+    const logs=d===todayStr()?effectiveLogsForDate(d):logsForDate(d)
+    return {date:d,s:summary(logs),logs}
+  }).filter(d=>d.logs.length>0)
+  if(!withData.length) return null
+  const n=withData.length
+  const avg = {
+    feed:    +(withData.reduce((s,d)=>s+d.s.feed,0)/n).toFixed(1),
+    sleep:   Math.round(withData.reduce((s,d)=>s+d.s.sleep,0)/n),
+    diapers: +(withData.reduce((s,d)=>s+d.s.diapers,0)/n).toFixed(1),
+    days:    n,
+  }
+  // Trung bình ngủ ngày (06:00-20:00) / ngủ đêm (20:00-06:00) mỗi ngày
+  const splits=withData.map(d=>splitSleepDayNight(d.logs))
+  avg.sleepDay   = Math.round(splits.reduce((s,sp)=>s+sp.day,0)/n)
+  avg.sleepNight = Math.round(splits.reduce((s,sp)=>s+sp.night,0)/n)
+  // wake window avg: avg time between sleep sessions
+  let totalWake=0, wakeCount=0
+  withData.forEach(({logs})=>{
+    const sleeps=logs.filter(l=>l.activityId==='sleep').sort((a,b)=>a.startTime.localeCompare(b.startTime))
+    for(let i=1;i<sleeps.length;i++) {
+      const gap=calcDur(sleeps[i-1].endTime||sleeps[i-1].startTime, sleeps[i].startTime)
+      if(gap>0&&gap<300){ totalWake+=gap; wakeCount++ }
+    }
+  })
+  avg.wake = wakeCount>0 ? Math.round(totalWake/wakeCount) : null
+  return { avg, dates, withData }
+}
+
+
+// Day/Night sleep split (Ngày: 06:00-20:00, Đêm: 20:00-06:00)
+function calcDaySleepMins(startMins, duration) {
+  const DAY_S=360, DAY_E=1200, FULL=1440
+  let day=0, rem=duration, cur=startMins%FULL
+  while(rem>0){
+    let chunk
+    if(cur>=DAY_S && cur<DAY_E){ chunk=Math.min(rem,DAY_E-cur); day+=chunk }
+    else if(cur>=DAY_E)        { chunk=Math.min(rem,FULL-cur) }
+    else                       { chunk=Math.min(rem,DAY_S-cur) }
+    rem-=chunk; cur=(cur+chunk)%FULL
+  }
+  return day
+}
+function splitSleepDayNight(logs) {
+  let day=0, night=0
+  logs.filter(l=>l.activityId==='sleep'&&l.duration>0).forEach(l=>{
+    const [h,m]=l.startTime.split(':').map(Number)
+    const d=calcDaySleepMins(h*60+m, l.duration)
+    day+=d; night+=l.duration-d
+  })
+  return { day, night }
+}
+// Tuổi bé theo tháng — luôn tính từ ngày sinh (birthDate). Trả về null nếu chưa nhập ngày sinh.
+function getBabyAgeMonths() {
+  const cfg=store.getSettings()
+  if(!cfg.birthDate) return null
+  const [y,mo,d]=cfg.birthDate.split('-').map(Number)
+  const birth=new Date(y,mo-1,d), now=new Date()
+  return Math.floor((now-birth)/(1000*60*60*24*30.44))
+}
+// Tháng dùng để tra chuẩn WHO/AAP (STANDARDS chỉ có mốc 1-6) — kẹp về [1,6],
+// và mặc định Tháng 1 nếu chưa nhập ngày sinh.
+function getStandardsMonth() {
+  const age=getBabyAgeMonths()
+  if(age===null) return 1
+  return Math.min(6,Math.max(1,age))
+}
+// Tháng dùng để tra bảng tăng trưởng WHO (mốc 0-6) — mặc định tháng 2 nếu chưa nhập ngày sinh.
+function getGrowthChartMonth() {
+  const age=getBabyAgeMonths()
+  if(age===null) return 2
+  return Math.min(6,Math.max(0,age))
+}
+function getVaccineDates() {
+  const cfg=store.getSettings()
+  if(!cfg.birthDate) return {}
+  const [y,mo,d]=cfg.birthDate.split('-').map(Number)
+  const birth=new Date(y,mo-1,d)
+  const result={}
+  VACCINE_SCHEDULE.forEach(v=>{
+    const dt=new Date(birth)
+    dt.setMonth(dt.getMonth()+v.months)
+    result[v.id]=dt.getFullYear()+'-'+pad(dt.getMonth()+1)+'-'+pad(dt.getDate())
+  })
+  return result
+}
+function getWhoStatus(val, arr) {
+  if(!arr) return null
+  if(val<arr[0]) return {status:'low',  text:'Thấp hơn P3',    clr:'#ef4444'}
+  if(val>arr[2]) return {status:'high', text:'Cao hơn P97',    clr:'#f97316'}
+  if(val<arr[1]) return {status:'ok',   text:'P3–P50 (ổn)',    clr:'#22c55e'}
+                 return {status:'ok',   text:'P50–P97 (tốt)',  clr:'#22c55e'}
+}
 
 // ═══════════════════════════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════════════════════════
 let S = {
-  tab:      'today',
-  date:     todayStr(),
-  timer:    null,
-  elapsed:  0,
-  modal:    null,   // { mode:'add'|'edit', actId, entry?, _f? }  _f = form snapshot
-  babyName: store.getSettings().babyName || 'Bé',
+  tab:          'today',
+  date:         todayStr(),
+  timer:        null,
+  elapsed:      0,
+  modal:        null,
+  confirmModal: null,
+  babyName:     store.getSettings().babyName || 'Bé',
+  histView:     'day',        // 'day' | 'week'
+  feedReminder: false,        // show reminder banner
+  schView:      'list',
+  schId:        null,
+  schModal:     null,
+  exportModal:  null,
+  healthView:   'mood',   // 'mood'|'growth'|'notes'|'vaccines'
+  growthModal:  false,
+  healthModal:  false,
+  moodModal:    false,
+  editGrowth:   null,
+  editHealth:   null,
 }
-
 let _ticker = null
-
-function set(patch) { S = {...S, ...patch}; draw() }
+function set(patch) { S={...S,...patch}; draw() }
 
 // ═══════════════════════════════════════════════════════════════
 // TIMER
 // ═══════════════════════════════════════════════════════════════
 function tickStart() {
-  if (_ticker) clearInterval(_ticker)
-  _ticker = setInterval(()=>{ if(S.timer) set({elapsed: Math.floor((Date.now()-S.timer.ts)/1000)}) }, 1000)
+  if(_ticker) clearInterval(_ticker)
+  _ticker=setInterval(()=>{
+    if(!S.timer) return
+    // Cập nhật state ngầm (không gọi set()/draw() — tránh vẽ lại toàn bộ app mỗi giây,
+    // việc này từng làm mất nội dung đang gõ dở trong các ô input khác như ghi chú).
+    S.elapsed = Math.floor((Date.now()-S.timer.ts)/1000)
+    const el = document.getElementById('timerElapsedEl')
+    if(el) el.textContent = fmtElapsed(S.elapsed)
+    // Mỗi khi tròn phút, làm mới các số liệu "sống" (Ngủ ngày/đêm đang chạy, "X phút trước"...)
+    // — nhưng chỉ khi không ai đang gõ dở trong ô input/textarea nào, để không mất chữ.
+    const ae=document.activeElement, typing=ae&&(ae.tagName==='INPUT'||ae.tagName==='TEXTAREA')
+    if(S.elapsed>0 && S.elapsed%60===0 && !typing) draw()
+  },1000)
 }
 function timerStart(act) {
-  const t = { actId: act.id, startTime: nowS(), ts: Date.now(), date: S.date }
-  store.setTimer(t)
-  tickStart()
-  set({ timer: t, elapsed: 0 })
+  const t={actId:act.id,startTime:nowS(),ts:Date.now(),date:S.date}
+  store.setTimer(t); tickStart(); set({timer:t,elapsed:0})
 }
 function timerStop() {
-  if (!S.timer) return
-  const end = nowS()
-  const dur = calcDur(S.timer.startTime, end)
-  upsertEntry(S.timer.date, { id: uid(), activityId: S.timer.actId, startTime: S.timer.startTime, endTime: end, duration: dur, note: '' })
-  store.setTimer(null)
-  if (_ticker) clearInterval(_ticker)
-  set({ timer: null, elapsed: 0 })
+  if(!S.timer) return
+  const end=nowS()
+  let dur=calcDur(S.timer.startTime,end)
+  // Đã bấm "Dừng ✅" tức là hoạt động có thật. Nếu bắt đầu/kết thúc rơi vào cùng 1 phút
+  // đồng hồ (HH:MM giống nhau), dur sẽ tính ra 0 và biến mất khỏi mọi tổng kết — nên
+  // luôn làm tròn lên tối thiểu 1 phút cho các phiên đã chủ động dừng.
+  if(dur===0) dur=1
+  const entry={id:uid(),activityId:S.timer.actId,startTime:S.timer.startTime,endTime:end,duration:dur,note:''}
+  upsertEntry(S.timer.date,entry)
+  afterFeedLog(entry)
+  store.setTimer(null); if(_ticker) clearInterval(_ticker); set({timer:null,elapsed:0})
 }
 
 // ═══════════════════════════════════════════════════════════════
-// ACTIONS
+// FEATURE 1: NHẮC GIỜ ĂN
 // ═══════════════════════════════════════════════════════════════
-function tapActivity(act) {
-  if (act.hasTimer) {
-    if (S.timer?.actId === act.id) { timerStop() }
-    else if (S.timer) { openModal({ mode:'add', actId: act.id }) }
-    else { timerStart(act) }
-  } else {
-    const t = nowS()
-    upsertEntry(S.date, { id:uid(), activityId:act.id, startTime:t, endTime:t, duration:0, note:'' })
-    draw()
-  }
+let _reminderTimer = null
+
+function scheduleReminder() {
+  const cfg = store.getSettings()
+  if(!cfg.reminderOn) return
+  if(_reminderTimer) clearTimeout(_reminderTimer)
+  const mins = cfg.reminderInterval || 150
+  _reminderTimer = setTimeout(()=>{
+    if(Notification.permission==='granted') {
+      new Notification('🍼 ' + S.babyName, {
+        body: 'Đến giờ cho bé ăn rồi! 🍼',
+        tag: 'feed-reminder',
+        icon: ''
+      })
+    }
+    set({ feedReminder: true })
+  }, mins * 60 * 1000)
 }
 
-function openModal(opts) { set({ modal: opts }) }
-function closeModal()    { set({ modal: null }) }
-
-function selectAct(id) {
-  const f = snapForm()
-  set({ modal: {...S.modal, actId: id, _f: {...f, feedType: f.feedType||'breast_left'}} })
-}
-function selectFT(id) {
-  const f = snapForm()
-  set({ modal: {...S.modal, _f: {...f, feedType: id}} })
+function clearReminder() {
+  if(_reminderTimer) clearTimeout(_reminderTimer)
+  _reminderTimer = null
+  set({ feedReminder: false })
 }
 
-function snapForm() {
-  return {
-    startTime: val('mStart') || nowS(),
-    endTime:   val('mEnd')   || nowS(),
-    note:      val('mNote')  || '',
-    feedType:  val('mFT')    || 'breast_left',
-    amount:    val('mAmt')   || '',
-  }
-}
-function val(id) { return document.getElementById(id)?.value || '' }
-
-function submitModal() {
-  const f    = snapForm()
-  const act  = getAct(S.modal.actId)
-  const dur  = act.hasTimer ? calcDur(f.startTime, f.endTime) : 0
-  const data = {
-    activityId: S.modal.actId,
-    startTime:  f.startTime,
-    endTime:    act.hasTimer ? f.endTime : f.startTime,
-    duration:   dur,
-    note:       f.note,
-    feedType:   S.modal.actId==='feed' ? f.feedType : undefined,
-    amount:     (S.modal.actId==='feed' && f.feedType==='bottle' && f.amount) ? Number(f.amount) : undefined,
-  }
-  if (S.modal.mode==='edit' && S.modal.entry) {
-    upsertEntry(S.date, { ...S.modal.entry, ...data })
-  } else {
-    upsertEntry(S.date, { id: uid(), ...data })
-  }
-  set({ modal: null })
+function snoozeReminder() {
+  set({ feedReminder: false })
+  if(_reminderTimer) clearTimeout(_reminderTimer)
+  _reminderTimer = setTimeout(()=>{ set({ feedReminder: true }) }, 30*60*1000)
 }
 
-function deleteEntry(id) {
-  if (!confirm('Xoá ghi chú này?')) return
-  removeEntry(S.date, id)
+async function requestNotifPermission() {
+  if(!('Notification' in window)) { alert('Trình duyệt này không hỗ trợ thông báo'); return }
+  const result = await Notification.requestPermission()
+  const cfg = store.getSettings()
+  store.setSettings({...cfg, notifPermission: result})
   draw()
 }
 
+function initReminderOnLoad() {
+  const cfg = store.getSettings()
+  if(!cfg.reminderOn || !cfg.lastFeedTs) return
+  const elapsed = Date.now() - cfg.lastFeedTs
+  const interval = (cfg.reminderInterval || 150) * 60 * 1000
+  const remaining = interval - elapsed
+  if(remaining <= 0) {
+    set({ feedReminder: true })
+  } else {
+    if(_reminderTimer) clearTimeout(_reminderTimer)
+    _reminderTimer = setTimeout(()=>{
+      if(Notification.permission==='granted') {
+        new Notification('🍼 ' + S.babyName, { body:'Đến giờ cho bé ăn rồi! 🍼', tag:'feed-reminder' })
+      }
+      set({ feedReminder: true })
+    }, remaining)
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// FEATURE 2: THEO DÕI BÚ 2 BÊN
+// ═══════════════════════════════════════════════════════════════
+function updateLastFeedSide(entry) {
+  if(entry.activityId !== 'feed') return
+  if(!isBreast(entry.feedType)) return
+  const cfg = store.getSettings()
+  store.setSettings({...cfg,
+    lastFeedSide: { side: entry.feedType, time: entry.startTime, ts: Date.now() },
+    lastFeedTs: Date.now()
+  })
+}
+
+function getNextSide(lastSide) {
+  if(lastSide==='breast_left')  return { id:'breast_right', label:'BÚ PHẢI', emoji:'→ 🤱' }
+  if(lastSide==='breast_right') return { id:'breast_left',  label:'BÚ TRÁI', emoji:'← 🤱' }
+  return null
+}
+
+function getSideSuggestion() {
+  const cfg = store.getSettings()
+  const last = cfg.lastFeedSide
+  if(!last || !isBreast(last.side)) return null
+  const next = getNextSide(last.side)
+  const lastLabel = last.side==='breast_left' ? 'TRÁI' : 'PHẢI'
+  return { lastSide: last.side, lastLabel, next, time: last.time, ts: last.ts }
+}
+
+// Called after any feed entry is saved
+function afterFeedLog(entry) {
+  if(entry.activityId !== 'feed') return
+  updateLastFeedSide(entry)
+  const cfg = store.getSettings()
+  store.setSettings({...cfg, lastFeedTs: Date.now()})
+  clearReminder()
+  scheduleReminder()
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LOG ACTIONS
+// ═══════════════════════════════════════════════════════════════
+function tapActivity(act) {
+  if(act.hasTimer) {
+    if(S.timer?.actId===act.id) timerStop()
+    else if(S.timer) openModal({mode:'add',actId:act.id})
+    else timerStart(act)
+  } else {
+    const t=nowS()
+    const entry={id:uid(),activityId:act.id,startTime:t,endTime:t,duration:0,note:''}
+    upsertEntry(S.date,entry)
+    draw()
+  }
+}
+function openModal(opts) {
+  // Auto-suggest next breast side
+  const sug = getSideSuggestion()
+  if(opts.mode==='add' && (!opts.actId||opts.actId==='feed') && sug?.next) {
+    opts = {...opts, actId:'feed', _f:{ feedType: sug.next.id }}
+  }
+  set({modal:opts})
+}
+function closeModal()  { set({modal:null}) }
+function selectAct(id) { set({modal:{...S.modal,actId:id,_f:{...snapForm(),feedType:snapForm().feedType||'breast_left'}}}) }
+function selectFT(id)  { set({modal:{...S.modal,_f:{...snapForm(),feedType:id}}}) }
+function snapForm() {
+  return { startTime:val('mStart')||nowS(), endTime:val('mEnd')||nowS(),
+           note:val('mNote')||'', feedType:val('mFT')||'breast_left', amount:val('mAmt')||'' }
+}
+function val(id) { return document.getElementById(id)?.value||'' }
+function submitModal() {
+  const f=snapForm(),act=getAct(S.modal.actId),dur=act.hasTimer?calcDur(f.startTime,f.endTime):0
+  const data={activityId:S.modal.actId,startTime:f.startTime,endTime:act.hasTimer?f.endTime:f.startTime,
+    duration:dur,note:f.note,feedType:S.modal.actId==='feed'?f.feedType:undefined,
+    amount:(S.modal.actId==='feed'&&f.feedType==='bottle'&&f.amount)?Number(f.amount):undefined}
+  let entry
+  if(S.modal.mode==='edit'&&S.modal.entry) { entry={...S.modal.entry,...data}; upsertEntry(S.date,entry) }
+  else { entry={id:uid(),...data}; upsertEntry(S.date,entry) }
+  afterFeedLog(entry)
+  set({modal:null})
+}
+function deleteEntry(id) {
+  showConfirm('Xoá ghi chú này?', ()=>{ removeEntry(S.date,id); draw() })
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CONFIRM MODAL
+// ═══════════════════════════════════════════════════════════════
+function showConfirm(msg,onOk) { set({confirmModal:{msg,onOk}}) }
+function confirmOk() { const fn=S.confirmModal?.onOk; set({confirmModal:null}); if(fn) fn() }
+function confirmCancel() { set({confirmModal:null}) }
+
+// ═══════════════════════════════════════════════════════════════
+// SCHEDULE BANK
+// ═══════════════════════════════════════════════════════════════
+function schNew() {
+  const sch={id:uid(),name:'Lịch mới',note:'',createdAt:todayStr(),entries:[]}
+  const all=store.getSchedules(); all.push(sch); store.setSchedules(all)
+  set({schView:'edit',schId:sch.id})
+}
+function schUsePreset(presetId) {
+  const preset=PRESET_SCHEDULES.find(p=>p.id===presetId); if(!preset) return
+  const sch={
+    id:uid(), name:preset.name, note:preset.note, createdAt:todayStr(),
+    entries:preset.entries.map(e=>({...e, id:uid()})), // tạo id riêng, tách khỏi mẫu gốc
+  }
+  const all=store.getSchedules(); all.push(sch); store.setSchedules(all)
+  set({schView:'edit',schId:sch.id})
+}
+function schDelete(id) {
+  showConfirm('Xoá lịch này?',()=>{ store.setSchedules(store.getSchedules().filter(s=>s.id!==id)); set({schView:'list',schId:null}) })
+}
+function schSaveMeta() {
+  const name=val('schName')||'Lịch mới',note=val('schNote')||''
+  const all=store.getSchedules(),idx=all.findIndex(s=>s.id===S.schId)
+  if(idx>=0){all[idx].name=name;all[idx].note=note;store.setSchedules(all)} draw()
+}
+function schAddEntry()     { set({schModal:{mode:'add',actId:'feed'}}) }
+function schEditEntry(eid) {
+  const sch=store.getSchedules().find(s=>s.id===S.schId),entry=sch?.entries.find(e=>e.id===eid)
+  if(!entry) return; set({schModal:{mode:'edit',actId:entry.activityId,entry}})
+}
+function schDeleteEntry(eid) {
+  showConfirm('Xoá hoạt động này?',()=>{
+    const all=store.getSchedules(),idx=all.findIndex(s=>s.id===S.schId)
+    if(idx>=0){all[idx].entries=all[idx].entries.filter(e=>e.id!==eid);store.setSchedules(all)} draw()
+  })
+}
+function schSelectAct(id) { set({schModal:{...S.schModal,actId:id}}) }
+function schSelectFT(id)  { set({schModal:{...S.schModal,_f:{...schSnapForm(),feedType:id}}}) }
+function schSnapForm() {
+  return { time:val('seTime')||'07:00', duration:val('seDur')||'',
+           note:val('seNote')||'', feedType:val('seFT')||'breast_left', amount:val('seAmt')||'' }
+}
+function schSubmitEntry() {
+  const f=schSnapForm(),act=getAct(S.schModal.actId)
+  const entry={id:S.schModal.mode==='edit'?S.schModal.entry.id:uid(),
+    activityId:S.schModal.actId, time:f.time, duration:f.duration?Number(f.duration):0,
+    note:f.note, feedType:S.schModal.actId==='feed'?f.feedType:undefined,
+    amount:(S.schModal.actId==='feed'&&f.feedType==='bottle'&&f.amount)?Number(f.amount):undefined}
+  const all=store.getSchedules(),idx=all.findIndex(s=>s.id===S.schId)
+  if(idx<0) return
+  if(S.schModal.mode==='edit') { const ei=all[idx].entries.findIndex(e=>e.id===entry.id); if(ei>=0) all[idx].entries[ei]=entry }
+  else { all[idx].entries.push(entry); all[idx].entries.sort((a,b)=>a.time.localeCompare(b.time)) }
+  store.setSchedules(all); set({schModal:null})
+}
+function schApplyToday(id) {
+  const sch=store.getSchedules().find(s=>s.id===id); if(!sch) return
+  showConfirm(`Áp dụng lịch "${sch.name}" vào hôm nay? Các ghi chú cũ vẫn giữ lại.`, ()=>{
+    sch.entries.forEach(e=>{
+      const end=e.duration>0?addMins(e.time,e.duration):e.time
+      upsertEntry(todayStr(),{id:uid(),activityId:e.activityId,startTime:e.time,endTime:end,
+        duration:e.duration||0,note:e.note||'',feedType:e.feedType,amount:e.amount})
+    })
+    set({tab:'today',date:todayStr()})
+  })
+}
+
+
+// ═══════════════════════════════════════════════════════════════
+// HEALTH ACTIONS
+// ═══════════════════════════════════════════════════════════════
+function saveGrowth() {
+  const wt=val('gWeight'),ht=val('gHeight'),hc=val('gHead'),dt=val('gDate')||todayStr(),nt=val('gNote')
+  if(!wt&&!ht) return
+  const all=store.getGrowth()
+  const entry={ id:uid(), date:dt, weight:wt?parseFloat(wt):null, height:ht?parseFloat(ht):null, headCirc:hc?parseFloat(hc):null, note:nt }
+  if(S.editGrowth) {
+    const i=all.findIndex(r=>r.id===S.editGrowth.id)
+    if(i>=0) all[i]={...all[i],...entry,id:S.editGrowth.id}
+  } else { all.push(entry) }
+  all.sort((a,b)=>a.date.localeCompare(b.date))
+  store.setGrowth(all)
+  set({growthModal:false, editGrowth:null})
+}
+function deleteGrowth(id) {
+  showConfirm('Xoá số liệu này?', ()=>{ store.setGrowth(store.getGrowth().filter(r=>r.id!==id)); draw() })
+}
+function saveHealthNote() {
+  const dt=val('hnDate')||todayStr(), tm=val('hnTime')||nowS()
+  const temp=val('hnTemp'), note=val('hnNote')
+  const symptoms=SYMPTOMS.filter((_,i)=>document.getElementById('sym_'+i)?.checked)
+  const all=store.getHealth()
+  const entry={ id:uid(), date:dt, time:tm, temp:temp?parseFloat(temp):null, symptoms, note }
+  if(S.editHealth) {
+    const i=all.findIndex(r=>r.id===S.editHealth.id)
+    if(i>=0) all[i]={...all[i],...entry,id:S.editHealth.id}
+  } else { all.unshift(entry) }
+  store.setHealth(all)
+  set({healthModal:false, editHealth:null})
+}
+function deleteHealthNote(id) {
+  showConfirm('Xoá ghi chú sức khoẻ?', ()=>{ store.setHealth(store.getHealth().filter(r=>r.id!==id)); draw() })
+}
+function toggleVaccine(id) {
+  const all=store.getVaccines()
+  if(all[id]) { delete all[id] }
+  else { all[id]={ doneDate:todayStr() } }
+  store.setVaccines(all); draw()
+}
+function saveMood() {
+  const score=S._moodScore||3, note=val('moodNote')||''
+  const all=store.getMood()
+  all.unshift({ id:uid(), date:todayStr(), time:nowS(), score, note })
+  store.setMood(all)
+  set({moodModal:false, _moodScore:null})
+}
+function deleteMood(id) {
+  showConfirm('Xoá ghi chú mood?', ()=>{ store.setMood(store.getMood().filter(r=>r.id!==id)); draw() })
+}
+function saveBirthDate() {
+  const d=val('sBirthDate'); if(!d) return
+  store.setSettings({...store.getSettings(), birthDate:d}); draw()
+}
+function saveBabyGender(g) {
+  store.setSettings({...store.getSettings(), babyGender:g}); draw()
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SETTINGS ACTIONS
+// ═══════════════════════════════════════════════════════════════
 function saveName() {
-  const n = val('sName').trim() || 'Bé'
-  store.setSettings({...store.getSettings(), babyName: n})
-  set({ babyName: n })
+  const n=val('sName').trim()||'Bé'
+  store.setSettings({...store.getSettings(),babyName:n}); set({babyName:n})
 }
-
-function exportData() {
-  const blob = new Blob([JSON.stringify({ babyName: S.babyName, logs: store.getLogs(), at: new Date().toISOString() }, null, 2)], {type:'application/json'})
-  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'baby-tracker-'+todayStr()+'.json' })
-  a.click()
+function toggleReminder(on) {
+  store.setSettings({...store.getSettings(),reminderOn:on})
+  if(on) scheduleReminder(); else clearReminder()
+  draw()
 }
-
+function saveReminderInterval(mins) {
+  store.setSettings({...store.getSettings(),reminderInterval:Number(mins)})
+  if(store.getSettings().reminderOn) scheduleReminder()
+  draw()
+}
+// Xoá THẬT SỰ toàn bộ dữ liệu đã lưu (trước đây nút này chỉ xoá nhật ký, để sót lại
+// lịch mẫu/tăng trưởng/sức khoẻ/tiêm chủng/mood/tên bé — rất rủi ro khi đưa máy cho người khác).
+function resetAllData() {
+  clearReminder()
+  store.setLogs({})
+  store.setSchedules([])
+  store.setGrowth([])
+  store.setHealth([])
+  store.setVaccines({})
+  store.setMood([])
+  store.setSettings({})
+  store.setTimer(null)
+  if(_ticker) clearInterval(_ticker)
+  S = {...S, timer:null, elapsed:0, babyName:'Bé', date:todayStr(), tab:'today'}
+  draw()
+}
 function importFile(file) {
-  const r = new FileReader()
-  r.onload = e => {
+  const r=new FileReader()
+  r.onload=e=>{
     try {
-      const d = JSON.parse(e.target.result)
-      if (d.logs) store.setLogs(d.logs)
-      if (d.babyName) { store.setSettings({...store.getSettings(), babyName: d.babyName}); S.babyName = d.babyName }
-      alert('Import thành công! 🎉')
-      draw()
+      const d=JSON.parse(e.target.result)
+      if(d.logs)      store.setLogs(d.logs)
+      if(d.schedules) store.setSchedules(d.schedules)
+      if(d.growth)    store.setGrowth(d.growth)
+      if(d.health)    store.setHealth(d.health)
+      if(d.vaccines)  store.setVaccines(d.vaccines)
+      if(d.mood)      store.setMood(d.mood)
+      // File mới (có settings) → phục hồi nguyên cụm; file cũ → chỉ có babyName rời
+      if(d.settings)       store.setSettings({...store.getSettings(),...d.settings})
+      else if(d.babyName)  store.setSettings({...store.getSettings(),babyName:d.babyName})
+      const newName = d.settings?.babyName || d.babyName
+      if(newName) S.babyName = newName
+      alert('Import thành công! 🎉'); draw()
     } catch { alert('File không hợp lệ!') }
   }
   r.readAsText(file)
 }
 
 // ═══════════════════════════════════════════════════════════════
-// RENDER HELPERS
+// EXPORT AS IMAGE
 // ═══════════════════════════════════════════════════════════════
-function cc(pairs) {  // color css
-  return Object.entries(pairs).map(([k,v])=>`${k}:${v}`).join(';')
+function exportAsImage() {
+  const logs=logsForDate(S.date)
+  if(!logs.length){ alert('Chưa có dữ liệu ngày này!'); return }
+  const dpr=Math.min(window.devicePixelRatio||2,3),W=680,PAD=36
+  const ROW=62,HDR=110,SUM=80,FTR=44,H=HDR+logs.length*ROW+SUM+FTR+PAD
+  const canvas=document.createElement('canvas')
+  canvas.width=W*dpr; canvas.height=H*dpr
+  const ctx=canvas.getContext('2d'); ctx.scale(dpr,dpr)
+  const AC={feed:{dot:'#f59e0b',bg:'#fffbeb',text:'#78350f'},sleep:{dot:'#3b82f6',bg:'#eff6ff',text:'#1e3a8a'},
+    play:{dot:'#22c55e',bg:'#f0fdf4',text:'#14532d'},bath:{dot:'#06b6d4',bg:'#ecfeff',text:'#164e63'},
+    diaper_wet:{dot:'#0ea5e9',bg:'#f0f9ff',text:'#0c4a6e'},diaper_dirty:{dot:'#f97316',bg:'#fff7ed',text:'#7c2d12'}}
+  ctx.fillStyle='#f8f5f2'; ctx.fillRect(0,0,W,H)
+  ctx.shadowColor='rgba(0,0,0,0.08)'; ctx.shadowBlur=24; ctx.shadowOffsetY=4
+  ctx.fillStyle='#fff'; rrect(ctx,PAD/2,PAD/2,W-PAD,H-PAD,20); ctx.fill()
+  ctx.shadowColor='transparent'; ctx.shadowBlur=0
+  const g=ctx.createLinearGradient(PAD/2,PAD/2,W-PAD/2,PAD/2)
+  g.addColorStop(0,'#fecdd3'); g.addColorStop(1,'#fda4af')
+  ctx.fillStyle=g; rrectTop(ctx,PAD/2,PAD/2,W-PAD,HDR,20); ctx.fill()
+  ctx.font='32px serif'; ctx.textAlign='left'; ctx.fillText('🍼',PAD+8,PAD/2+52)
+  ctx.fillStyle='#7f1d1d'; ctx.font='bold 26px -apple-system,sans-serif'; ctx.fillText(S.babyName,PAD+54,PAD/2+50)
+  ctx.fillStyle='#9f1239'; ctx.font='500 15px -apple-system,sans-serif'; ctx.fillText(fmtDateLong(S.date),PAD+54,PAD/2+74)
+  let y=PAD/2+HDR+4
+  logs.forEach((e,i)=>{
+    const a=getAct(e.activityId); if(!a) return; const c=AC[e.activityId]||AC.feed
+    if(i%2===0){ ctx.fillStyle='#fafafa'; ctx.fillRect(PAD/2+1,y,W-PAD-2,ROW) }
+    ctx.beginPath(); ctx.arc(PAD+22,y+ROW/2,18,0,Math.PI*2); ctx.fillStyle=c.dot; ctx.fill()
+    ctx.font='20px serif'; ctx.textAlign='center'; ctx.fillText(a.emoji,PAD+22,y+ROW/2+7)
+    ctx.textAlign='left'; ctx.fillStyle=c.text; ctx.font='bold 15px -apple-system,sans-serif'; ctx.fillText(a.label,PAD+52,y+ROW/2-6)
+    if(e.feedType){const lw=ctx.measureText(a.label).width;ctx.font='12px -apple-system,sans-serif';ctx.fillStyle='#92400e';ctx.fillText('· '+ftLabel(e.feedType),PAD+56+lw,y+ROW/2-6)}
+    ctx.font='500 13px ui-monospace,monospace'; ctx.fillStyle='#6b7280'
+    ctx.fillText(e.startTime+(e.endTime&&e.endTime!==e.startTime?' → '+e.endTime:''),PAD+52,y+ROW/2+13)
+    if(e.duration>0){ctx.textAlign='right';ctx.font='bold 14px -apple-system,sans-serif';ctx.fillStyle=c.text;ctx.fillText(fmtDur(e.duration),W-PAD-16,y+ROW/2+5)}
+    ctx.textAlign='left'; y+=ROW
+  })
+  ctx.strokeStyle='#f3f4f6'; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(PAD/2+1,y+8); ctx.lineTo(W-PAD/2-1,y+8); ctx.stroke()
+  const s=summary(logs),items=[]
+  if(s.feed) items.push('🍼 '+s.feed+' lần'); if(s.sleep) items.push('😴 '+fmtDur(s.sleep))
+  if(s.diapers) items.push('🚼 '+s.diapers+' tã'); if(s.play) items.push('🎮 '+s.play+' lần')
+  const sumY=y+SUM/2+14,step=(W-PAD*2)/Math.max(items.length,1)
+  ctx.textAlign='center'
+  items.forEach((item,i)=>{
+    const cx=PAD+step*i+step/2; ctx.font='16px serif'; ctx.fillText(item.split(' ')[0],cx,sumY-6)
+    ctx.font='bold 13px -apple-system,sans-serif'; ctx.fillStyle='#374151'; ctx.fillText(item.slice(item.indexOf(' ')+1),cx,sumY+12)
+  })
+  ctx.textAlign='center'; ctx.font='12px -apple-system,sans-serif'; ctx.fillStyle='#d1d5db'
+  ctx.fillText('Baby Tracker · '+S.babyName+' · '+fmtDateLong(S.date),W/2,H-PAD/2-14)
+  canvas.toBlob(blob=>{
+    if(!blob){alert('Lỗi tạo ảnh!');return}
+    const file=new File([blob],'baby-'+S.date+'.png',{type:'image/png'})
+    if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}))
+      navigator.share({files:[file],title:S.babyName+' · '+fmtDate(S.date)}).catch(()=>{})
+    else {
+      const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:'baby-'+S.date+'.png'})
+      document.body.appendChild(a); a.click(); document.body.removeChild(a)
+    }
+  },'image/png')
+}
+function rrect(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r)
+  ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h)
+  ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r)
+  ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath()
+}
+function rrectTop(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r)
+  ctx.lineTo(x+w,y+h);ctx.lineTo(x,y+h);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath()
+}
+
+// ── Export JSON ──────────────────────────────────────────────────
+function exportData() {
+  const data = JSON.stringify({
+    version: 2,
+    babyName: S.babyName,
+    settings: store.getSettings(),   // tên bé, ngày sinh, giới tính, cài đặt nhắc giờ ăn...
+    logs: store.getLogs(),
+    schedules: store.getSchedules(), // lịch sinh hoạt mẫu
+    growth: store.getGrowth(),       // số liệu tăng trưởng (cân nặng/chiều cao/vòng đầu)
+    health: store.getHealth(),       // ghi chú sức khoẻ
+    vaccines: store.getVaccines(),   // mũi tiêm đã hoàn thành
+    mood: store.getMood(),           // nhật ký tâm trạng
+    at: new Date().toISOString()
+  }, null, 2)
+
+  // iOS Web Share API (share sheet → Lưu vào Files / AirDrop...)
+  if (navigator.share) {
+    try {
+      const file = new File([data], 'baby-tracker-' + todayStr() + '.json', { type: 'application/json' })
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: 'Baby Tracker Backup' })
+          .catch(err => { if (err.name !== 'AbortError') set({ exportModal: data }) })
+        return
+      }
+    } catch(e) {}
+  }
+
+  // Fallback: hiện modal để copy hoặc download
+  set({ exportModal: data })
+}
+
+
+function downloadJsonFile() {
+  const data = S.exportModal
+  if (!data) return
+
+  const filename = 'baby-tracker-' + todayStr() + '.json'
+
+  // iOS Safari (không có <a download>) → Web Share API → "Lưu vào Tệp"
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+  if (isIOS && navigator.share) {
+    try {
+      const file = new File([data], filename, { type: 'application/json' })
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: 'Baby Tracker Backup' }).catch(() => {})
+        return
+      }
+    } catch(e) {}
+  }
+
+  // Desktop & Android: blob download — luôn hoạt động
+  const blob = new Blob([data], { type: 'application/json' })
+  const url  = URL.createObjectURL(blob)
+  const a    = document.createElement('a')
+  a.href     = url
+  a.setAttribute('download', filename)
+  a.style.display = 'none'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  setTimeout(() => URL.revokeObjectURL(url), 2000)
+}
+function copyExportData() {
+  const ta = document.getElementById('exportTextarea')
+  if (!ta) return
+  navigator.clipboard.writeText(ta.value)
+    .then(() => { const b=document.getElementById('copyBtn'); if(b){b.textContent='✅ Đã copy!'; setTimeout(()=>b.textContent='📋 Copy',2000)} })
+    .catch(() => { ta.select(); document.execCommand('copy') })
+}
+
+function downloadExportData() {
+  const ta = document.getElementById('exportTextarea')
+  if (!ta) return
+  const blob = new Blob([ta.value], { type: 'application/json' })
+  const url  = URL.createObjectURL(blob)
+  window.open(url, '_blank')
+  setTimeout(() => URL.revokeObjectURL(url), 3000)
+}
+
+
+// ── Export Weekly Image ───────────────────────────────────────────
+function exportWeekImage() {
+  const ws = weeklyStats()
+  if (!ws) { alert('Chưa đủ dữ liệu trong tuần!'); return }
+
+  const months = getStandardsMonth()
+  const std    = STANDARDS[months]
+  const dates  = getWeekDates()
+  const dayNames = ['CN','T2','T3','T4','T5','T6','T7']
+
+  const dpr = Math.min(window.devicePixelRatio || 2, 3)
+  const W   = 680
+  const PAD = 32
+  const H   = 780
+
+  const canvas = document.createElement('canvas')
+  canvas.width  = W * dpr
+  canvas.height = H * dpr
+  const ctx = canvas.getContext('2d')
+  ctx.scale(dpr, dpr)
+
+  // Background
+  ctx.fillStyle = '#f8f5f2'
+  ctx.fillRect(0, 0, W, H)
+
+  // White card
+  ctx.shadowColor = 'rgba(0,0,0,0.08)'; ctx.shadowBlur = 20; ctx.shadowOffsetY = 4
+  ctx.fillStyle = '#ffffff'; rrect(ctx, PAD/2, PAD/2, W-PAD, H-PAD, 20); ctx.fill()
+  ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0
+
+  // Header gradient
+  const g = ctx.createLinearGradient(PAD/2, PAD/2, W-PAD/2, PAD/2)
+  g.addColorStop(0, '#fecdd3'); g.addColorStop(1, '#fda4af')
+  ctx.fillStyle = g; rrectTop(ctx, PAD/2, PAD/2, W-PAD, 90, 20); ctx.fill()
+
+  // Header text
+  const weekStart = dates[0].split('-').reverse().slice(0,2).join('/')
+  const weekEnd   = dates[6].split('-').reverse().slice(0,2).join('/')
+  ctx.font = '28px serif'; ctx.textAlign = 'left'; ctx.fillText('🍼', PAD+8, PAD/2+42)
+  ctx.fillStyle = '#7f1d1d'; ctx.font = 'bold 22px -apple-system,sans-serif'
+  ctx.fillText(S.babyName + ' · Tổng kết tuần', PAD+46, PAD/2+38)
+  ctx.fillStyle = '#9f1239'; ctx.font = '500 13px -apple-system,sans-serif'
+  ctx.fillText(weekStart + ' – ' + weekEnd + '  ·  Chuẩn ' + std.label + ' (WHO/AAP)', PAD+46, PAD/2+60)
+
+  // Stats rows
+  const stats = [
+    { emoji:'🍼', label:'Số cữ ăn / ngày', val: ws.avg.feed,  min: std.feedMin,        max: std.feedMax,        unit:' lần' },
+    { emoji:'😴', label:'Tổng ngủ / ngày',  val: Math.round(ws.avg.sleep/60), min: std.sleepMin/60, max: std.sleepMax/60, unit:'h' },
+    { emoji:'🚼', label:'Số tã / ngày',     val: ws.avg.diapers, min: std.diaperMin,    max: std.diaperMax,      unit:' tã'  },
+  ]
+  if (ws.avg.wake) stats.push(
+    { emoji:'⏱️', label:'Wake window TB',  val: ws.avg.wake, min: std.wakeMin,         max: std.wakeMax,        unit:' phút' }
+  )
+
+  let y = PAD/2 + 100
+  const rowH = 56
+  stats.forEach(s => {
+    const st = statusOf(s.val, s.min, s.max)
+    const clrs = { green:['#f0fdf4','#22c55e','#14532d'], yellow:['#fefce8','#eab308','#713f12'], red:['#fff1f2','#f43f5e','#9f1239'] }
+    const [bg, border, text] = clrs[st]
+    const icon = st==='green'?'✅':st==='yellow'?'🟡':'🔴'
+
+    // Row bg
+    ctx.fillStyle = bg; rrect(ctx, PAD+4, y, W-PAD*2-8, rowH-4, 10); ctx.fill()
+    ctx.strokeStyle = border; ctx.lineWidth = 1.5; rrect(ctx, PAD+4, y, W-PAD*2-8, rowH-4, 10); ctx.stroke()
+
+    // Emoji + label
+    ctx.font = '18px serif'; ctx.textAlign = 'left'; ctx.fillText(s.emoji, PAD+16, y+rowH/2+6)
+    ctx.fillStyle = text; ctx.font = 'bold 13px -apple-system,sans-serif'
+    ctx.fillText(s.label, PAD+42, y+rowH/2-2)
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px -apple-system,sans-serif'
+    ctx.fillText('Chuẩn: ' + s.min + '–' + s.max + s.unit, PAD+42, y+rowH/2+14)
+
+    // Value + icon
+    ctx.textAlign = 'right'
+    ctx.fillStyle = '#111827'; ctx.font = 'bold 18px -apple-system,sans-serif'
+    ctx.fillText(s.val + s.unit, W-PAD-36, y+rowH/2+6)
+    ctx.font = '16px serif'; ctx.fillText(icon, W-PAD-14, y+rowH/2+6)
+    ctx.textAlign = 'left'
+    y += rowH
+  })
+
+  // Bar charts
+  y += 12
+  const charts = [
+    { title:'Số cữ ăn', emoji:'🍼', color:'#f59e0b', fn: (logs) => logs.filter(l=>l.activityId==='feed').length, max: std.feedMax },
+    { title:'Giờ ngủ',  emoji:'😴', color:'#3b82f6', fn: (logs) => Math.round(logs.filter(l=>l.activityId==='sleep').reduce((s,l)=>s+(l.duration||0),0)/60*10)/10, max: std.sleepMax/60 },
+  ]
+
+  charts.forEach(chart => {
+    const barData = dates.map(d => {
+      const logs = logsForDate(d)
+      const [yr,mo,day] = d.split('-').map(Number)
+      const dt = new Date(yr,mo-1,day)
+      return { label: dayNames[dt.getDay()], val: chart.fn(logs), hasData: logs.length>0 }
+    })
+    const maxV = Math.max(...barData.map(b=>b.val), 1)
+    const chartH = 70
+    const barW   = (W - PAD*2 - 16) / 7
+
+    // Chart title
+    ctx.font = '13px serif'; ctx.fillText(chart.emoji, PAD+8, y+14)
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px -apple-system,sans-serif'
+    ctx.fillText(chart.title + ' theo ngày', PAD+28, y+14)
+    y += 22
+
+    barData.forEach((b, i) => {
+      const bx   = PAD + 8 + i * barW
+      const barH = b.hasData && b.val > 0 ? Math.max(6, Math.round((b.val/maxV)*(chartH-20))) : 3
+      const by   = y + chartH - 20 - barH
+
+      // Bar
+      ctx.fillStyle = b.hasData ? chart.color : '#e5e7eb'
+      rrect(ctx, bx+2, by, barW-6, barH, 3); ctx.fill()
+
+      // Day label
+      ctx.fillStyle = '#9ca3af'; ctx.font = 'bold 10px -apple-system,sans-serif'; ctx.textAlign = 'center'
+      ctx.fillText(b.label, bx + barW/2, y + chartH - 6)
+
+      // Value
+      if (b.hasData && b.val > 0) {
+        ctx.fillStyle = chart.color; ctx.font = 'bold 10px -apple-system,sans-serif'
+        ctx.fillText(b.val, bx + barW/2, by - 3)
+      }
+      ctx.textAlign = 'left'
+    })
+    y += chartH + 8
+  })
+
+  // Footer
+  ctx.textAlign = 'center'; ctx.font = '11px -apple-system,sans-serif'; ctx.fillStyle = '#d1d5db'
+  ctx.fillText('Baby Tracker · ' + S.babyName + ' · ' + weekStart + ' – ' + weekEnd, W/2, H-PAD/2-10)
+
+  canvas.toBlob(blob => {
+    if (!blob) { alert('Lỗi tạo ảnh!'); return }
+    const file = new File([blob], 'baby-week-' + todayStr() + '.png', { type: 'image/png' })
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] }))
+      navigator.share({ files: [file], title: 'Tổng kết tuần · ' + S.babyName }).catch(() => {})
+    else {
+      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'baby-week-' + todayStr() + '.png' })
+      document.body.appendChild(a); a.click(); document.body.removeChild(a)
+    }
+  }, 'image/png')
+}
+
+
+// ── Doctor Report Canvas ─────────────────────────────────────────
+function exportDoctorReport() {
+  const ws=weeklyStats()
+  const growth=store.getGrowth()
+  const healthNotes=store.getHealth().slice(0,3)
+  const vaccines=store.getVaccines()
+  const vacDates=getVaccineDates()
+  const cfg=store.getSettings()
+  const gender=cfg.babyGender||'girl'
+  const months=getGrowthChartMonth()
+  const std=STANDARDS[Math.min(6,Math.max(1,months))]
+  const latest=growth.length?growth[growth.length-1]:null
+  const wRef=WHO.weight[gender][months]
+  const hRef=WHO.height[gender][months]
+  const upcoming=VACCINE_SCHEDULE.filter(v=>!vaccines[v.id]&&vacDates[v.id]&&vacDates[v.id]>=todayStr()).slice(0,4)
+
+  const dpr=Math.min(window.devicePixelRatio||2,3)
+  const W=680, H=920, PAD=28
+  const canvas=document.createElement('canvas')
+  canvas.width=W*dpr; canvas.height=H*dpr
+  const ctx=canvas.getContext('2d'); ctx.scale(dpr,dpr)
+
+  // BG
+  ctx.fillStyle='#f0f4f8'; ctx.fillRect(0,0,W,H)
+  ctx.shadowColor='rgba(0,0,0,0.08)'; ctx.shadowBlur=16; ctx.shadowOffsetY=3
+  ctx.fillStyle='#fff'; rrect(ctx,PAD/2,PAD/2,W-PAD,H-PAD,18); ctx.fill()
+  ctx.shadowColor='transparent'; ctx.shadowBlur=0
+
+  // Header
+  const g=ctx.createLinearGradient(0,PAD/2,W,PAD/2)
+  g.addColorStop(0,'#1e40af'); g.addColorStop(1,'#3b82f6')
+  ctx.fillStyle=g; rrectTop(ctx,PAD/2,PAD/2,W-PAD,80,18); ctx.fill()
+  ctx.fillStyle='white'; ctx.textAlign='left'; ctx.font='bold 20px -apple-system,sans-serif'
+  ctx.fillText('📋 Báo cáo sức khoẻ bé · '+S.babyName, PAD+12, PAD/2+34)
+  ctx.font='13px -apple-system,sans-serif'; ctx.fillStyle='rgba(255,255,255,.8)'
+  ctx.fillText('Ngày xuất: '+fmtDateLong(todayStr())+'  ·  '+std?.label||'', PAD+12, PAD/2+56)
+
+  let y=PAD/2+96
+
+  // Section helper
+  function section(title, color) {
+    ctx.fillStyle=color||'#f8fafc'; ctx.fillRect(PAD+4, y, W-PAD*2-8, 26)
+    ctx.fillStyle='#1e293b'; ctx.font='bold 13px -apple-system,sans-serif'; ctx.textAlign='left'
+    ctx.fillText(title, PAD+12, y+17); y+=30
+  }
+  function row(label, value, note='', ok=true) {
+    ctx.font='12px -apple-system,sans-serif'; ctx.fillStyle='#374151'
+    ctx.fillText(label, PAD+16, y+14)
+    ctx.textAlign='right'; ctx.font='bold 13px -apple-system,sans-serif'
+    ctx.fillStyle=ok?'#15803d':'#dc2626'; ctx.fillText(value, W-PAD-16, y+14)
+    if(note){ ctx.font='11px -apple-system,sans-serif'; ctx.fillStyle='#9ca3af'; ctx.fillText(note, W-PAD-16, y+27); y+=14 }
+    ctx.textAlign='left'; ctx.strokeStyle='#f1f5f9'; ctx.lineWidth=1
+    ctx.beginPath(); ctx.moveTo(PAD+8,y+20); ctx.lineTo(W-PAD-8,y+20); ctx.stroke()
+    y+=24
+  }
+
+  // 1. Growth
+  section('📏 TĂNG TRƯỞNG', '#eff6ff')
+  if(latest) {
+    if(latest.weight!=null){ const st=getWhoStatus(latest.weight,wRef); row('Cân nặng', latest.weight+'kg', st?.text||'', st?.status==='ok') }
+    if(latest.height!=null){ const st=getWhoStatus(latest.height,hRef); row('Chiều cao', latest.height+'cm', st?.text||'', st?.status==='ok') }
+    if(latest.headCirc!=null) row('Vòng đầu', latest.headCirc+'cm', '')
+    row('Ngày đo', fmtDateLong(latest.date), '')
+  } else { ctx.fillStyle='#9ca3af'; ctx.font='12px -apple-system,sans-serif'; ctx.fillText('Chưa có dữ liệu tăng trưởng', PAD+16, y+14); y+=28 }
+  y+=6
+
+  // 2. Weekly summary
+  section('📊 SINH HOẠT 7 NGÀY QUA', '#f0fdf4')
+  if(ws) {
+    const {avg}=ws
+    row('Số cữ ăn / ngày', avg.feed+' lần', 'Chuẩn: '+std?.feedMin+'-'+std?.feedMax+' lần', avg.feed>=std?.feedMin&&avg.feed<=std?.feedMax)
+    row('Tổng ngủ / ngày', fmtDur(avg.sleep), 'Chuẩn: '+fmtDur(std?.sleepMin)+'-'+fmtDur(std?.sleepMax), avg.sleep>=std?.sleepMin&&avg.sleep<=std?.sleepMax)
+    row('Số tã / ngày', avg.diapers+' tã', 'Chuẩn: 6-8 tã', avg.diapers>=6)
+  } else { ctx.fillStyle='#9ca3af'; ctx.font='12px -apple-system,sans-serif'; ctx.fillText('Chưa đủ dữ liệu', PAD+16, y+14); y+=28 }
+  y+=6
+
+  // 3. Vaccines
+  section('💉 TIÊM CHỦNG SẮP TỚI', '#fefce8')
+  if(upcoming.length) {
+    upcoming.forEach(v=>{ row(v.name, vacDates[v.id]?fmtDateLong(vacDates[v.id]):'', v.tag==='DV'?'Dịch vụ':'TCMR', true) })
+  } else { ctx.fillStyle='#16a34a'; ctx.font='bold 12px -apple-system,sans-serif'; ctx.fillText('✅ Không có mũi tiêm nào sắp tới', PAD+16, y+14); y+=28 }
+  y+=6
+
+  // 4. Health notes
+  section('🩺 GHI CHÚ SỨC KHOẺ GẦN ĐÂY', '#fff1f2')
+  if(healthNotes.length) {
+    healthNotes.forEach(h=>{
+      const line=(h.temp?'🌡️'+h.temp+'°C  ':'')+( h.symptoms?.join(', ')||'')+( h.note?' — '+h.note:'')
+      ctx.font='12px -apple-system,sans-serif'; ctx.fillStyle='#374151'
+      ctx.fillText(fmtDateLong(h.date)+': '+line.slice(0,60)+(line.length>60?'...':''), PAD+16, y+14)
+      ctx.strokeStyle='#f1f5f9'; ctx.lineWidth=1
+      ctx.beginPath(); ctx.moveTo(PAD+8,y+22); ctx.lineTo(W-PAD-8,y+22); ctx.stroke()
+      y+=26
+    })
+  } else { ctx.fillStyle='#9ca3af'; ctx.font='12px -apple-system,sans-serif'; ctx.fillText('Không có ghi chú sức khoẻ', PAD+16, y+14); y+=28 }
+
+  // Footer
+  ctx.fillStyle='#94a3b8'; ctx.font='11px -apple-system,sans-serif'; ctx.textAlign='center'
+  ctx.fillText('Baby Tracker · Xuất ngày '+fmtDateLong(todayStr())+' · Dữ liệu tham khảo, không thay thế tư vấn bác sĩ', W/2, H-PAD/2-10)
+
+  canvas.toBlob(blob=>{
+    if(!blob){alert('Lỗi!');return}
+    const file=new File([blob],'bao-cao-bs-'+todayStr()+'.png',{type:'image/png'})
+    if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}))
+      navigator.share({files:[file],title:'Báo cáo sức khoẻ '+S.babyName}).catch(()=>{})
+    else {
+      const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:'bao-cao-bs-'+todayStr()+'.png'})
+      document.body.appendChild(a);a.click();document.body.removeChild(a)
+    }
+  },'image/png')
 }
 
 // ═══════════════════════════════════════════════════════════════
 // RENDER
 // ═══════════════════════════════════════════════════════════════
 function draw() {
-  document.getElementById('app').innerHTML = html()
+  try {
+    document.getElementById('app').innerHTML=html()
+  } catch(err) {
+    console.error('Lỗi khi vẽ giao diện:', err)
+    document.getElementById('app').innerHTML = `
+<div style="padding:40px 24px;text-align:center;color:#374151;">
+  <div style="font-size:48px;margin-bottom:12px;">😵</div>
+  <p style="font-weight:700;margin:0 0 6px;">App gặp lỗi hiển thị</p>
+  <p style="font-size:13px;color:#9ca3af;margin:0 0 20px;">Dữ liệu của bạn vẫn an toàn trong máy. Hãy thử tải lại trang trước.</p>
+  <button onclick="location.reload()" style="background:#3b82f6;color:white;border:none;border-radius:12px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:10px;">🔄 Tải lại trang</button>
+  <div style="font-size:11px;color:#d1d5db;margin-top:16px;">Nếu tải lại vẫn lỗi, vào Cài đặt > Xuất JSON ở phiên bản trước để sao lưu, sau đó báo cho người phát triển kèm mô tả lỗi.</div>
+</div>`
+  }
 }
-
 function html() {
   return `
 <div style="min-height:100vh;background:#faf9f7;display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative;">
+  ${rFeedReminderBanner()}
   ${rHeader()}
   <div style="flex:1;overflow-y:auto;padding-bottom:72px;">
-    ${S.tab==='today'    ? rToday()    : ''}
-    ${S.tab==='history'  ? rHistory()  : ''}
-    ${S.tab==='settings' ? rSettings() : ''}
+    ${S.tab==='today'     ? rToday()     : ''}
+    ${S.tab==='history'   ? rHistory()   : ''}
+    ${S.tab==='schedules' ? rSchedules() : ''}
+    ${S.tab==='health'    ? rHealth()    : ''}
+    ${S.tab==='settings'  ? rSettings()  : ''}
   </div>
   ${rBottomNav()}
-  ${S.modal ? rModal() : ''}
+  ${S.modal       ? rModal()        : ''}
+  ${S.schModal    ? rSchModal()     : ''}
+  ${S.confirmModal? rConfirmModal() : ''}
+  ${S.exportModal  ? rExportModal()  : ''}
 </div>`
 }
 
-// ── Header ─────────────────────────────────────────────────────
-function rHeader() {
-  const isToday = S.date===todayStr()
+// ── Reminder Banner ──────────────────────────────────────────────
+function rFeedReminderBanner() {
+  if(!S.feedReminder) return ''
   return `
-<div style="background:white;border-bottom:1px solid #f3f4f6;padding:52px 16px 12px;position:sticky;top:0;z-index:20;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${S.tab==='today'?'10':'0'}px;">
+<div class="pulse" style="position:fixed;top:0;left:0;right:0;z-index:30;max-width:480px;margin:0 auto;
+  background:linear-gradient(135deg,#f43f5e,#fb7185);color:white;padding:14px 16px;
+  display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 12px rgba(244,63,94,.4);">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span style="font-size:26px;">🍼</span>
+    <div>
+      <div style="font-weight:800;font-size:14px;">Đến giờ cho bé ăn rồi!</div>
+      <div style="font-size:11px;opacity:.85;">Nhấn "Ghi ăn" để bắt đầu theo dõi</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:6px;">
+    <button onclick="openModal({mode:'add',actId:'feed'})"
+      style="background:white;color:#f43f5e;border:none;border-radius:10px;padding:7px 12px;font-size:12px;font-weight:800;cursor:pointer;">
+      Ghi ăn
+    </button>
+    <button onclick="snoozeReminder()"
+      style="background:rgba(255,255,255,.2);color:white;border:none;border-radius:10px;padding:7px 10px;font-size:12px;font-weight:600;cursor:pointer;">
+      30p
+    </button>
+    <button onclick="clearReminder()"
+      style="background:none;color:white;border:none;padding:7px 6px;font-size:18px;cursor:pointer;opacity:.8;">×</button>
+  </div>
+</div>`
+}
+
+// ── Header ────────────────────────────────────────────────────────
+function rHeader() {
+  const isToday=S.date===todayStr(), showNav=S.tab==='today'
+  const topPad = S.feedReminder ? '70px' : '52px'
+  return `
+<div style="background:white;border-bottom:1px solid #f3f4f6;padding:${topPad} 16px ${showNav?'12':'10'}px;position:sticky;top:0;z-index:20;box-shadow:0 1px 4px rgba(0,0,0,.04);">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${showNav?'10':'0'}px;">
     <div style="display:flex;align-items:center;gap:8px;">
       <span style="font-size:22px;">🍼</span>
-      <span style="font-size:18px;font-weight:800;color:#1f2937;">${S.babyName}</span>
+      <span style="font-size:18px;font-weight:800;color:#1f2937;">${esc(S.babyName)}</span>
     </div>
     <button onclick="openModal({mode:'add',actId:'feed'})"
-      style="background:#f43f5e;color:white;width:36px;height:36px;border-radius:50%;border:none;font-size:22px;cursor:pointer;box-shadow:0 2px 8px rgba(244,63,94,0.35);display:flex;align-items:center;justify-content:center;line-height:1;">+</button>
+      style="background:#f43f5e;color:white;width:36px;height:36px;border-radius:50%;border:none;font-size:22px;cursor:pointer;box-shadow:0 2px 8px rgba(244,63,94,.35);display:flex;align-items:center;justify-content:center;">+</button>
   </div>
-  ${S.tab==='today' ? `
+  ${showNav?`
   <div style="display:flex;align-items:center;justify-content:space-between;">
-    <button onclick="set({date:shiftDate(S.date,-1)})"
-      style="width:32px;height:32px;border-radius:50%;background:#f3f4f6;border:none;font-size:18px;cursor:pointer;color:#374151;">‹</button>
+    <button onclick="set({date:shiftDate(S.date,-1)})" style="width:32px;height:32px;border-radius:50%;background:#f3f4f6;border:none;font-size:18px;cursor:pointer;color:#374151;">‹</button>
     <div style="text-align:center;">
       <div style="font-weight:700;color:#1f2937;font-size:14px;">${fmtDateLong(S.date)}</div>
       ${isToday?`<div style="font-size:11px;color:#f43f5e;font-weight:600;margin-top:1px;">Hôm nay</div>`:''}
     </div>
     <button onclick="${isToday?'':` set({date:shiftDate(S.date,1)})`}"
-      style="width:32px;height:32px;border-radius:50%;background:${isToday?'#f9fafb':'#f3f4f6'};border:none;font-size:18px;cursor:pointer;color:${isToday?'#d1d5db':'#374151'};"
-      ${isToday?'disabled':''}>›</button>
-  </div>
-  ` : ''}
+      style="width:32px;height:32px;border-radius:50%;background:${isToday?'#f9fafb':'#f3f4f6'};border:none;font-size:18px;cursor:pointer;color:${isToday?'#d1d5db':'#374151'};" ${isToday?'disabled':''}>›</button>
+  </div>`:``}
 </div>`
 }
 
-// ── Today ───────────────────────────────────────────────────────
+// ── Today ─────────────────────────────────────────────────────────
 function rToday() {
-  const logs    = logsForDate(S.date)
-  const isToday = S.date===todayStr()
+  const logs=logsForDate(S.date),isToday=S.date===todayStr()
+  const summaryLogs=isToday?effectiveLogsForDate(S.date):logs
   return `
 <div style="padding-top:12px;">
-  ${S.timer && isToday ? rTimer() : ''}
-  ${isToday ? rQuickActions() : ''}
-  ${rSummary(logs)}
+  ${S.timer&&isToday?rTimer():''}
+  ${isToday?rSideTracker():''}
+  ${isToday?rQuickActions():''}
+  ${rSummary(summaryLogs)}
   ${rTimeline(logs)}
 </div>`
 }
 
+// ── Side Tracker Card (Feature 2) ────────────────────────────────
+function rSideTracker() {
+  const sug=getSideSuggestion(); if(!sug) return ''
+  const cfg=store.getSettings()
+  const nextLabel=sug.next?.label||''
+  const lastLabel=sug.lastSide==='breast_left'?'BÚ TRÁI':'BÚ PHẢI'
+  const ago=fmtAgo(sug.ts)
+  return `
+<div style="margin:0 16px 12px;border-radius:16px;border:1.5px solid #fda4af;background:linear-gradient(135deg,#fff1f2,#fef2f2);padding:12px 14px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <div style="font-size:11px;font-weight:700;color:#9f1239;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;">🤱 Lần trước · ${ago}</div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-size:13px;font-weight:600;color:#374151;">${lastLabel}</span>
+        <span style="color:#9ca3af;font-size:16px;">→</span>
+        <span style="font-size:14px;font-weight:800;color:#e11d48;">LẦN NÀY: ${nextLabel}</span>
+      </div>
+    </div>
+    <button onclick="openModal({mode:'add',actId:'feed',_f:{feedType:'${sug.next?.id||'breast_left'}'}})"
+      style="background:#f43f5e;color:white;border:none;border-radius:12px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;">
+      Ghi ăn →
+    </button>
+  </div>
+</div>`
+}
+
 function rTimer() {
-  const c = getClr(S.timer.actId)
-  const a = getAct(S.timer.actId)
+  const c=getClr(S.timer.actId),a=getAct(S.timer.actId)
   return `
 <div style="margin:0 16px 12px;border-radius:18px;border:2px solid ${c.border};background:${c.bg};padding:14px 16px;display:flex;align-items:center;justify-content:space-between;">
   <div style="display:flex;align-items:center;gap:12px;">
     <span style="font-size:30px;">${a.emoji}</span>
     <div>
       <div style="font-size:11px;font-weight:700;color:${c.text};text-transform:uppercase;letter-spacing:.05em;">Đang ${a.label.toLowerCase()}...</div>
-      <div style="font-size:28px;font-family:monospace;font-weight:800;color:#111827;letter-spacing:.02em;">${fmtElapsed(S.elapsed)}</div>
+      <div id="timerElapsedEl" style="font-size:28px;font-family:monospace;font-weight:800;color:#111827;">${fmtElapsed(S.elapsed)}</div>
       <div style="font-size:11px;color:#6b7280;">Bắt đầu ${S.timer.startTime}</div>
     </div>
   </div>
-  <button onclick="timerStop()"
-    style="background:white;border:2px solid ${c.border};color:${c.text};font-weight:700;padding:9px 14px;border-radius:12px;cursor:pointer;font-size:13px;box-shadow:0 1px 3px rgba(0,0,0,.08);">
-    Dừng ✅
-  </button>
+  <button onclick="timerStop()" style="background:white;border:2px solid ${c.border};color:${c.text};font-weight:700;padding:9px 14px;border-radius:12px;cursor:pointer;font-size:13px;">Dừng ✅</button>
 </div>`
 }
-
 function rQuickActions() {
   return `
 <div style="padding:0 16px 12px;">
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-    ${ACTIVITIES.map(a => {
-      const active = S.timer?.actId===a.id
-      const c = getClr(a.id)
-      return `
-<button onclick="tapActivity(getAct('${a.id}'))"
-  style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 6px;border-radius:18px;border:2px solid ${active?c.border:'#e5e7eb'};background:${active?c.bg:'white'};cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:all .15s;">
-  <span style="font-size:28px;margin-bottom:4px;">${a.emoji}</span>
-  <span style="font-size:12px;font-weight:700;color:${active?c.text:'#4b5563'};">${a.label}</span>
-  ${active&&a.hasTimer?`<span style="font-size:10px;color:${c.text};margin-top:2px;font-weight:600;">● đang chạy</span>`:''}
-</button>`
+    ${ACTIVITIES.map(a=>{
+      const active=S.timer?.actId===a.id,c=getClr(a.id)
+      return `<button onclick="tapActivity(getAct('${a.id}'))"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 6px;border-radius:18px;border:2px solid ${active?c.border:'#e5e7eb'};background:${active?c.bg:'white'};cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.06);">
+        <span style="font-size:28px;margin-bottom:4px;">${a.emoji}</span>
+        <span style="font-size:12px;font-weight:700;color:${active?c.text:'#4b5563'};">${a.label}</span>
+        ${active&&a.hasTimer?`<span style="font-size:10px;color:${c.text};margin-top:2px;font-weight:600;">● đang chạy</span>`:''}
+      </button>`
     }).join('')}
   </div>
 </div>`
 }
-
 function rSummary(logs) {
-  if (!logs.length) return ''
-  const s = summary(logs)
-  const items = [
-    { e:'🍼', l:'Lần ăn',   v: s.feed   || '–' },
-    { e:'😴', l:'Tổng ngủ', v: s.sleep ? fmtDur(s.sleep) : '–' },
-    { e:'🚼', l:'Số tã',    v: s.diapers || '–' },
-    { e:'🎮', l:'Chơi',     v: s.play    || '–' },
+  if(!logs.length) return ''
+  const s=summary(logs)
+  const sl=splitSleepDayNight(logs)
+  const items=[
+    {e:'🍼', l:'Lần ăn',    v:s.feed||'–'},
+    {e:'☀️', l:'Ngủ ngày',  v:sl.day>0?fmtDur(sl.day):'–'},
+    {e:'🌙', l:'Ngủ đêm',   v:sl.night>0?fmtDur(sl.night):'–'},
+    {e:'🚼', l:'Số tã',     v:s.diapers||'–'},
   ]
   return `
 <div style="margin:0 16px 12px;background:white;border-radius:18px;border:1px solid #f3f4f6;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.04);">
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
-    ${items.map(i=>`
-    <div style="display:flex;flex-direction:column;align-items:center;">
-      <span style="font-size:20px;margin-bottom:2px;">${i.e}</span>
-      <span style="font-size:15px;font-weight:800;color:#111827;">${i.v}</span>
-      <span style="font-size:10px;color:#9ca3af;text-align:center;line-height:1.3;">${i.l}</span>
+    ${items.map(i=>`<div style="display:flex;flex-direction:column;align-items:center;">
+      <span style="font-size:18px;margin-bottom:2px;">${i.e}</span>
+      <span style="font-size:13px;font-weight:800;color:#111827;">${i.v}</span>
+      <span style="font-size:9px;color:#9ca3af;text-align:center;line-height:1.3;">${i.l}</span>
     </div>`).join('')}
   </div>
+  ${s.sleep>0?`<div style="margin-top:8px;padding-top:8px;border-top:1px solid #f3f4f6;text-align:center;font-size:11px;color:#9ca3af;">
+    Tổng ngủ: <strong style="color:#374151;">${fmtDur(s.sleep)}</strong>
+  </div>`:''}
 </div>`
 }
-
 function rTimeline(logs) {
-  if (!logs.length) return `
+  if(!logs.length) return `
 <div style="display:flex;flex-direction:column;align-items:center;padding:64px 16px;color:#9ca3af;">
   <span style="font-size:52px;margin-bottom:12px;">🌸</span>
   <p style="font-size:15px;font-weight:600;margin:0 0 4px;">Chưa có ghi chú nào</p>
-  <p style="font-size:13px;margin:0;">Nhấn nút bên trên để bắt đầu theo dõi</p>
+  <p style="font-size:13px;margin:0;">Nhấn nút bên trên để bắt đầu</p>
 </div>`
-
   return `
 <div style="padding:4px 16px 32px;">
-  <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Timeline hôm nay</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;">Timeline hôm nay</div>
+    <button onclick="exportAsImage()" style="background:#fff1f2;border:1.5px solid #fda4af;color:#e11d48;border-radius:20px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;">🖼️ Lưu ảnh</button>
+  </div>
   <div style="position:relative;">
     <div style="position:absolute;left:22px;top:14px;bottom:14px;width:2px;background:#f0f0f0;"></div>
-    <div style="display:flex;flex-direction:column;gap:10px;">
-      ${logs.map(e => rEntry(e)).join('')}
-    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">${logs.map(e=>rEntry(e)).join('')}</div>
   </div>
 </div>`
 }
-
 function rEntry(e) {
-  const a = getAct(e.activityId)
-  if (!a) return ''
-  const c = getClr(e.activityId)
-  const entryJson = JSON.stringify(e).replace(/"/g,'&quot;')
+  const a=getAct(e.activityId); if(!a) return ''
+  const c=getClr(e.activityId),ej=JSON.stringify(e).replace(/&/g,'&amp;').replace(/"/g,'&quot;')
   return `
 <div style="display:flex;gap:10px;position:relative;">
   <div style="width:44px;height:44px;flex-shrink:0;border-radius:50%;background:${c.dot};display:flex;align-items:center;justify-content:center;font-size:20px;z-index:1;border:3px solid white;box-shadow:0 1px 5px rgba(0,0,0,.12);">${a.emoji}</div>
@@ -433,102 +1432,447 @@ function rEntry(e) {
       <div style="flex:1;min-width:0;">
         <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:3px;">
           <span style="font-weight:700;font-size:13px;color:${c.text};">${a.label}</span>
-          ${e.duration>0 ? `<span style="font-size:11px;padding:1px 7px;border-radius:20px;background:${c.badge};color:${c.text};font-weight:600;">${fmtDur(e.duration)}</span>` : ''}
-          ${e.feedType ? `<span style="font-size:11px;padding:1px 7px;border-radius:20px;background:#fef9c3;color:#78350f;font-weight:500;">${ftLabel(e.feedType)}</span>` : ''}
-          ${e.amount>0 ? `<span style="font-size:11px;padding:1px 7px;border-radius:20px;background:#fef9c3;color:#78350f;font-weight:500;">${e.amount}ml</span>` : ''}
+          ${e.duration>0?`<span style="font-size:11px;padding:1px 7px;border-radius:20px;background:${c.badge};color:${c.text};font-weight:600;">${fmtDur(e.duration)}</span>`:''}
+          ${e.feedType?`<span style="font-size:11px;padding:1px 7px;border-radius:20px;background:#fef9c3;color:#78350f;font-weight:500;">${ftLabel(e.feedType)}</span>`:''}
+          ${e.amount>0?`<span style="font-size:11px;padding:1px 7px;border-radius:20px;background:#fef9c3;color:#78350f;font-weight:500;">${e.amount}ml</span>`:''}
         </div>
-        <div style="font-size:12px;color:#6b7280;font-family:monospace;">
-          ${e.startTime}${e.endTime&&e.endTime!==e.startTime?' → '+e.endTime:''}
-        </div>
-        ${e.note ? `<div style="font-size:12px;color:#6b7280;margin-top:3px;font-style:italic;">💬 ${e.note}</div>` : ''}
+        <div style="font-size:12px;color:#6b7280;font-family:monospace;">${e.startTime}${e.endTime&&e.endTime!==e.startTime?' → '+e.endTime:''}</div>
+        ${e.note?`<div style="font-size:12px;color:#6b7280;margin-top:3px;font-style:italic;">💬 ${esc(e.note)}</div>`:''}
       </div>
       <div style="display:flex;gap:1px;flex-shrink:0;">
-        <button onclick="openModal({mode:'edit',actId:'${e.activityId}',entry:JSON.parse(this.dataset.e)})" data-e="${entryJson}"
-          style="background:none;border:none;cursor:pointer;padding:5px;border-radius:8px;font-size:14px;" title="Sửa">✏️</button>
-        <button onclick="deleteEntry('${e.id}')"
-          style="background:none;border:none;cursor:pointer;padding:5px;border-radius:8px;font-size:14px;" title="Xoá">🗑️</button>
+        <button onclick="openModal({mode:'edit',actId:'${e.activityId}',entry:JSON.parse(this.dataset.e)})" data-e="${ej}" style="background:none;border:none;cursor:pointer;padding:5px;font-size:14px;">✏️</button>
+        <button onclick="deleteEntry('${e.id}')" style="background:none;border:none;cursor:pointer;padding:5px;font-size:14px;">🗑️</button>
       </div>
     </div>
   </div>
 </div>`
 }
 
-// ── History ─────────────────────────────────────────────────────
+// ── History (Feature 3: Week view) ────────────────────────────────
 function rHistory() {
-  const dates = logDates()
-  if (!dates.length) return `
-<div style="display:flex;flex-direction:column;align-items:center;padding:80px 16px;color:#9ca3af;">
+  return `
+<div>
+  <div style="display:flex;gap:0;margin:16px 16px 12px;background:#f3f4f6;border-radius:12px;padding:3px;">
+    <button onclick="set({histView:'day'})"
+      style="flex:1;padding:8px;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;
+      background:${S.histView==='day'?'white':'transparent'};color:${S.histView==='day'?'#1f2937':'#9ca3af'};
+      box-shadow:${S.histView==='day'?'0 1px 4px rgba(0,0,0,.08)':'none'};">
+      📋 Theo ngày
+    </button>
+    <button onclick="set({histView:'week'})"
+      style="flex:1;padding:8px;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;
+      background:${S.histView==='week'?'white':'transparent'};color:${S.histView==='week'?'#1f2937':'#9ca3af'};
+      box-shadow:${S.histView==='week'?'0 1px 4px rgba(0,0,0,.08)':'none'};">
+      📊 Tổng kết tuần
+    </button>
+  </div>
+  ${S.histView==='week' ? rWeeklySummary() : rDayList()}
+</div>`
+}
+
+function rDayList() {
+  const dates=logDates()
+  if(!dates.length) return `
+<div style="display:flex;flex-direction:column;align-items:center;padding:60px 16px;color:#9ca3af;">
   <span style="font-size:52px;margin-bottom:12px;">📅</span>
   <p style="font-size:15px;font-weight:600;margin:0;">Chưa có lịch sử</p>
-  <p style="font-size:13px;margin-top:4px;">Bắt đầu theo dõi hôm nay nhé!</p>
 </div>`
-
   return `
-<div style="padding:16px;">
+<div style="padding:0 16px 24px;">
   <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">${dates.length} ngày có dữ liệu</div>
   <div style="display:flex;flex-direction:column;gap:8px;">
-    ${dates.map(d => {
-      const logs = logsForDate(d)
-      const s    = summary(logs)
-      const today = d===todayStr()
-      return `
-<button onclick="set({tab:'today',date:'${d}'})"
-  style="background:white;border:1.5px solid ${today?'#fda4af':'#f3f4f6'};border-radius:16px;padding:14px 16px;text-align:left;cursor:pointer;width:100%;box-shadow:0 1px 4px rgba(0,0,0,.04);">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-    <div style="display:flex;align-items:center;gap:6px;">
-      <span style="font-weight:700;color:#1f2937;font-size:14px;">${fmtDateLong(d)}</span>
-      ${today?`<span style="font-size:10px;background:#fee2e2;color:#f43f5e;padding:1px 8px;border-radius:20px;font-weight:700;">Hôm nay</span>`:''}
-    </div>
-    <span style="color:#9ca3af;font-size:18px;">›</span>
-  </div>
-  <div style="display:flex;gap:14px;flex-wrap:wrap;">
-    ${s.feed    ? `<span style="font-size:12px;color:#6b7280;">🍼 ${s.feed} lần</span>` : ''}
-    ${s.sleep   ? `<span style="font-size:12px;color:#6b7280;">😴 ${fmtDur(s.sleep)}</span>` : ''}
-    ${s.diapers ? `<span style="font-size:12px;color:#6b7280;">🚼 ${s.diapers} tã</span>` : ''}
-    ${s.play    ? `<span style="font-size:12px;color:#6b7280;">🎮 ${s.play} lần</span>` : ''}
-    ${!s.feed&&!s.sleep&&!s.diapers&&!s.play ? `<span style="font-size:12px;color:#d1d5db;">Không có dữ liệu</span>` : ''}
-  </div>
-</button>`
+    ${dates.map(d=>{
+      const logs=d===todayStr()?effectiveLogsForDate(d):logsForDate(d)
+      const s=summary(logs),sl=splitSleepDayNight(logs),today=d===todayStr()
+      return `<button onclick="set({tab:'today',date:'${d}'})"
+        style="background:white;border:1.5px solid ${today?'#fda4af':'#f3f4f6'};border-radius:16px;padding:14px 16px;text-align:left;cursor:pointer;width:100%;box-shadow:0 1px 4px rgba(0,0,0,.04);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="font-weight:700;color:#1f2937;font-size:14px;">${fmtDateLong(d)}</span>
+            ${today?`<span style="font-size:10px;background:#fee2e2;color:#f43f5e;padding:1px 8px;border-radius:20px;font-weight:700;">Hôm nay</span>`:''}
+          </div>
+          <span style="color:#9ca3af;font-size:18px;">›</span>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          ${s.feed?`<span style="font-size:12px;color:#6b7280;">🍼 ${s.feed} lần</span>`:''}
+          ${sl.day>0?`<span style="font-size:12px;color:#6b7280;">☀️ ${fmtDur(sl.day)}</span>`:''}
+          ${sl.night>0?`<span style="font-size:12px;color:#6b7280;">🌙 ${fmtDur(sl.night)}</span>`:''}
+          ${s.diapers?`<span style="font-size:12px;color:#6b7280;">🚼 ${s.diapers} tã</span>`:''}
+          ${s.play?`<span style="font-size:12px;color:#6b7280;">🎮 ${s.play} lần</span>`:''}
+          ${!s.feed&&!sl.day&&!sl.night&&!s.diapers&&!s.play?`<span style="font-size:12px;color:#d1d5db;">Không có dữ liệu</span>`:''}
+        </div>
+      </button>`
     }).join('')}
   </div>
 </div>`
 }
 
-// ── Settings ────────────────────────────────────────────────────
-function rSettings() {
-  const all  = store.getLogs()
-  const days = Object.keys(all).length
-  const totalEntries = Object.values(all).reduce((s,arr)=>s+arr.length, 0)
-  return `
-<div style="padding:16px;">
-  <div style="background:white;border-radius:18px;border:1px solid #f3f4f6;overflow:hidden;margin-bottom:12px;">
-    <div style="padding:16px;">
-      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:8px;">👶 Tên bé</div>
-      <div style="display:flex;gap:8px;">
-        <input id="sName" value="${S.babyName}"
-          style="flex:1;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 12px;font-size:14px;outline:none;font-weight:600;" />
-        <button onclick="saveName()"
-          style="background:#f43f5e;color:white;border:none;border-radius:12px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;">Lưu</button>
+// ── Weekly Summary (Feature 3) ────────────────────────────────────
+function rWeeklySummary() {
+  const months=getStandardsMonth()
+  const std=STANDARDS[months]
+  const ws=weeklyStats()
+  const dates=getWeekDates()
+  const dayNames=['CN','T2','T3','T4','T5','T6','T7']
+
+  if(!ws) return `
+<div style="padding:16px;text-align:center;color:#9ca3af;">
+  <span style="font-size:48px;display:block;margin-bottom:12px;">📊</span>
+  <p style="font-size:14px;font-weight:600;margin:0 0 4px;">Chưa đủ dữ liệu</p>
+  <p style="font-size:12px;margin:0;">Cần ít nhất 1 ngày có ghi chú</p>
+</div>`
+
+  const {avg}=ws
+
+  function statRow(emoji, label, val, min, max, unit='') {
+    const st=statusOf(val,min,max),c=STATUS_CLR[st]
+    const pct=Math.min(100,Math.round((val/max)*100))
+    return `
+<div style="background:${c.bg};border:1.5px solid ${c.border};border-radius:14px;padding:12px 14px;margin-bottom:8px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="font-size:20px;">${emoji}</span>
+      <span style="font-size:13px;font-weight:700;color:${c.text};">${label}</span>
+    </div>
+    <div style="text-align:right;">
+      <span style="font-size:16px;font-weight:800;color:#111827;">${val}${unit}</span>
+      <span style="font-size:11px;color:#6b7280;margin-left:4px;">/ ${min}–${max}${unit}</span>
+    </div>
+  </div>
+  <div style="background:rgba(0,0,0,.06);border-radius:6px;height:6px;overflow:hidden;">
+    <div style="background:${c.border};height:100%;width:${pct}%;border-radius:6px;transition:width .5s;"></div>
+  </div>
+  <div style="font-size:11px;color:${c.text};margin-top:4px;font-weight:600;">
+    ${c.icon} ${st==='green'?'Đạt chuẩn':st==='yellow'?'Cần chú ý':'Cần bổ sung'}
+    · Chuẩn tháng ${months} (WHO/AAP)
+  </div>
+</div>`
+  }
+
+  // Bar chart helper
+  function barChart(title, emoji, getDayVal, maxVal, colorHex) {
+    const bars = dates.map(d => {
+      const logs=d===todayStr()?effectiveLogsForDate(d):logsForDate(d)
+      const v=getDayVal(logs)
+      const [yr,mo,day]=d.split('-').map(Number)
+      const dt=new Date(yr,mo-1,day)
+      const label=dayNames[dt.getDay()]
+      const pct=maxVal>0?Math.round((v/maxVal)*100):0
+      const hasData=logs.length>0
+      return {label,v,pct,hasData}
+    })
+    const maxV=Math.max(...bars.map(b=>b.v),1)
+    return `
+<div style="background:white;border-radius:16px;border:1px solid #f3f4f6;padding:14px;margin-bottom:10px;">
+  <div style="font-size:12px;font-weight:700;color:#374151;margin-bottom:12px;">${emoji} ${title}</div>
+  <div style="display:flex;align-items:flex-end;gap:4px;height:60px;">
+    ${bars.map(b=>`
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;">
+      <div style="flex:1;width:100%;display:flex;align-items:flex-end;">
+        <div style="width:100%;background:${b.hasData?colorHex:'#f3f4f6'};border-radius:4px 4px 0 0;
+          height:${b.hasData&&b.v>0?Math.max(8,Math.round((b.v/maxV)*100))+'%':'4px'};
+          transition:height .5s;"></div>
       </div>
+      <div style="font-size:9px;color:${b.hasData?'#6b7280':'#d1d5db'};font-weight:600;">${b.label}</div>
+      ${b.hasData&&b.v>0?`<div style="font-size:9px;color:${colorHex};font-weight:700;">${b.v}</div>`:`<div style="font-size:9px;color:#d1d5db;">–</div>`}
+    </div>`).join('')}
+  </div>
+</div>`
+  }
+
+  return `
+<div style="padding:0 16px 32px;">
+  <!-- Period & standard label -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+    <div>
+      <div style="font-size:13px;font-weight:800;color:#1f2937;">7 ngày gần nhất</div>
+      <div style="font-size:11px;color:#9ca3af;">${ws.avg.days} ngày có dữ liệu · So với chuẩn ${std.label}</div>
+    </div>
+    <div style="background:#fff1f2;border:1.5px solid #fda4af;border-radius:12px;padding:6px 12px;font-size:12px;font-weight:700;color:#e11d48;">
+      Tháng ${months}
     </div>
   </div>
 
+  <!-- Stats comparison -->
+  ${statRow('🍼','Số cữ ăn / ngày', avg.feed, std.feedMin, std.feedMax, ' lần')}
+  ${statRow('😴','Tổng ngủ / ngày',  Math.round(avg.sleep/60), std.sleepMin/60, std.sleepMax/60, 'h')}
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+    <div style="background:#fffbeb;border:1.5px solid #fde68a;border-radius:14px;padding:10px 12px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:2px;">☀️</div>
+      <div style="font-size:14px;font-weight:800;color:#111827;">${avg.sleepDay>0?fmtDur(avg.sleepDay):'–'}</div>
+      <div style="font-size:10px;color:#9ca3af;">Ngủ ngày TB/ngày</div>
+    </div>
+    <div style="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:14px;padding:10px 12px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:2px;">🌙</div>
+      <div style="font-size:14px;font-weight:800;color:#111827;">${avg.sleepNight>0?fmtDur(avg.sleepNight):'–'}</div>
+      <div style="font-size:10px;color:#9ca3af;">Ngủ đêm TB/ngày</div>
+    </div>
+  </div>
+  ${statRow('🚼','Số tã / ngày',      avg.diapers, std.diaperMin, std.diaperMax, ' tã')}
+  ${avg.wake ? statRow('⏱️','Wake window TB', avg.wake, std.wakeMin, std.wakeMax, ' phút') : ''}
+
+  <div style="height:1px;background:#f3f4f6;margin:16px 0;"></div>
+
+  <!-- Bar charts -->
+  ${barChart('Số cữ ăn theo ngày', '🍼', (logs)=>logs.filter(l=>l.activityId==='feed').length, std.feedMax, '#f59e0b')}
+  ${barChart('Ngủ ngày theo ngày (06:00-20:00)', '☀️', (logs)=>Math.round(splitSleepDayNight(logs).day/60*10)/10, std.sleepMax/60/2, '#f59e0b')}
+  ${barChart('Ngủ đêm theo ngày (20:00-06:00)', '🌙', (logs)=>Math.round(splitSleepDayNight(logs).night/60*10)/10, std.sleepMax/60/2, '#3b82f6')}
+  ${barChart('Số tã theo ngày', '🚼', (logs)=>logs.filter(l=>l.activityId.startsWith('diaper')).length, std.diaperMax, '#0ea5e9')}
+
+  <button onclick="exportWeekImage()"
+    style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;background:#fff1f2;border:1.5px solid #fda4af;color:#e11d48;border-radius:14px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;">
+    🖼️ Lưu ảnh tổng kết tuần
+  </button>
+  <div style="text-align:center;font-size:11px;color:#d1d5db;margin-top:10px;">Nguồn: WHO + AAP guidelines</div>
+</div>`
+}
+
+// ── Schedules ─────────────────────────────────────────────────────
+function rSchedules() {
+  if(S.schView==='edit') return rSchEdit()
+  return rSchList()
+}
+function rSchList() {
+  const all=store.getSchedules()
+  return `
+<div style="padding:16px;">
+  <button onclick="schNew()" style="width:100%;background:white;border:2px dashed #fda4af;color:#e11d48;border-radius:16px;padding:14px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;">
+    ＋ Tạo lịch sinh hoạt mới
+  </button>
+
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">📋 Hoặc bắt đầu nhanh từ mẫu có sẵn</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      ${PRESET_SCHEDULES.map(p=>`
+      <button onclick="schUsePreset('${p.id}')" style="text-align:left;width:100%;background:white;border:1.5px solid #f3f4f6;border-radius:14px;padding:12px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div style="min-width:0;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+            <span style="font-size:10px;background:#fff1f2;color:#e11d48;padding:1px 8px;border-radius:20px;font-weight:700;flex-shrink:0;">${p.badge}</span>
+            <span style="font-weight:700;font-size:13px;color:#1f2937;">${p.name}</span>
+          </div>
+          <div style="font-size:11px;color:#9ca3af;">${p.note}</div>
+        </div>
+        <span style="color:#9ca3af;font-size:18px;flex-shrink:0;">›</span>
+      </button>`).join('')}
+    </div>
+    <div style="font-size:11px;color:#d1d5db;margin-top:6px;">Dùng mẫu xong vẫn chỉnh sửa giờ giấc/thời lượng thoải mái theo bé.</div>
+  </div>
+
+  ${all.length?`<div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">🗂️ Lịch của bạn (${all.length})</div>`:''}
+  ${!all.length?`<div style="text-align:center;padding:24px 16px;color:#d1d5db;font-size:13px;">Chưa có lịch nào do bạn tạo — tạo mới hoặc dùng mẫu ở trên nhé.</div>`:''}
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    ${all.map(sch=>`
+    <div style="background:white;border-radius:16px;border:1px solid #f3f4f6;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.04);">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;">
+        <div>
+          <div style="font-weight:800;font-size:16px;color:#1f2937;">${esc(sch.name)}</div>
+          ${sch.note?`<div style="font-size:12px;color:#6b7280;margin-top:2px;">${esc(sch.note)}</div>`:''}
+          <div style="font-size:11px;color:#9ca3af;margin-top:4px;">${sch.entries.length} hoạt động</div>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <button onclick="set({schView:'edit',schId:'${sch.id}'})" style="background:#f3f4f6;border:none;border-radius:10px;padding:6px 10px;font-size:13px;cursor:pointer;">✏️</button>
+          <button onclick="schDelete('${sch.id}')" style="background:#fff1f2;border:none;border-radius:10px;padding:6px 10px;font-size:13px;cursor:pointer;">🗑️</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+        ${sch.entries.slice(0,6).map(e=>{const a=getAct(e.activityId),c=getClr(e.activityId);return `<span style="font-size:11px;padding:3px 9px;border-radius:20px;background:${c.badge};color:${c.text};font-weight:600;">${a?.emoji} ${e.time}</span>`}).join('')}
+        ${sch.entries.length>6?`<span style="font-size:11px;padding:3px 9px;border-radius:20px;background:#f3f4f6;color:#6b7280;">+${sch.entries.length-6}</span>`:''}
+      </div>
+      <button onclick="schApplyToday('${sch.id}')" style="width:100%;background:linear-gradient(135deg,#f43f5e,#fb7185);color:white;border:none;border-radius:12px;padding:10px;font-size:13px;font-weight:700;cursor:pointer;">
+        📋 Áp dụng vào hôm nay
+      </button>
+    </div>`).join('')}
+  </div>
+</div>`
+}
+function rSchEdit() {
+  const sch=store.getSchedules().find(s=>s.id===S.schId); if(!sch) return rSchList()
+  return `
+<div style="padding:16px;">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+    <button onclick="set({schView:'list',schId:null})" style="background:#f3f4f6;border:none;border-radius:10px;width:34px;height:34px;font-size:18px;cursor:pointer;">‹</button>
+    <span style="font-size:16px;font-weight:800;color:#1f2937;">${sch.name?esc(sch.name):'Chỉnh sửa lịch'}</span>
+  </div>
+  <div style="background:white;border-radius:16px;border:1px solid #f3f4f6;padding:16px;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:6px;">Tên lịch</div>
+    <input id="schName" value="${esc(sch.name)}" onblur="schSaveMeta()" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:15px;font-weight:700;outline:none;margin-bottom:10px;" />
+    <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:6px;">Ghi chú</div>
+    <input id="schNote" value="${esc(sch.note||'')}" placeholder="VD: Bé 2 tháng tuổi" onblur="schSaveMeta()" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:14px;outline:none;" />
+  </div>
+  <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">Hoạt động</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+    ${sch.entries.length===0?`<div style="text-align:center;padding:24px;color:#d1d5db;font-size:13px;">Chưa có hoạt động nào</div>`:''}
+    ${sch.entries.map(e=>{
+      const a=getAct(e.activityId),c=getClr(e.activityId)
+      return `<div style="background:white;border:1.5px solid ${c.border};border-radius:14px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:${c.dot};display:flex;align-items:center;justify-content:center;font-size:18px;">${a?.emoji}</div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:${c.text};">${a?.label} ${e.duration>0?'· '+fmtDur(e.duration):''}</div>
+            <div style="font-size:12px;color:#6b7280;font-family:monospace;">${e.time}${e.duration>0?' → '+addMins(e.time,e.duration):''}</div>
+            ${e.feedType?`<div style="font-size:11px;color:#92400e;">${ftLabel(e.feedType)}${e.amount?' · '+e.amount+'ml':''}</div>`:''}
+          </div>
+        </div>
+        <div style="display:flex;gap:4px;">
+          <button onclick="schEditEntry('${e.id}')" style="background:none;border:none;cursor:pointer;padding:5px;font-size:14px;">✏️</button>
+          <button onclick="schDeleteEntry('${e.id}')" style="background:none;border:none;cursor:pointer;padding:5px;font-size:14px;">🗑️</button>
+        </div>
+      </div>`
+    }).join('')}
+  </div>
+  <button onclick="schAddEntry()" style="width:100%;background:white;border:2px dashed #fda4af;color:#e11d48;border-radius:14px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;">＋ Thêm hoạt động</button>
+</div>`
+}
+function rSchModal() {
+  const m=S.schModal,isEdit=m.mode==='edit',entry=m.entry
+  const actId=m.actId||'feed',a=getAct(actId),f=m._f||{}
+  const timeVal=f.time??entry?.time??'07:00'
+  const durVal=f.duration??entry?.duration??''
+  const noteVal=f.note??entry?.note??''
+  const ftVal=f.feedType??entry?.feedType??'breast_left'
+  const amtVal=f.amount??entry?.amount??''
+  return `
+<div onclick="set({schModal:null})" style="position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:flex;align-items:flex-end;justify-content:center;">
+  <div onclick="event.stopPropagation()" class="slide-up" style="background:white;border-radius:24px 24px 0 0;padding:20px 20px 36px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;">
+    <div style="width:40px;height:4px;background:#e5e7eb;border-radius:4px;margin:0 auto 16px;"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+      <h2 style="font-size:16px;font-weight:800;color:#111827;margin:0;">${isEdit?'Sửa hoạt động':'Thêm vào lịch mẫu'}</h2>
+      <button onclick="set({schModal:null})" style="background:#f3f4f6;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;color:#6b7280;">×</button>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:8px;">Hoạt động</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        ${ACTIVITIES.map(act=>{const sel=act.id===actId,c=getClr(act.id);return `<button onclick="schSelectAct('${act.id}')" style="display:flex;flex-direction:column;align-items:center;padding:10px 4px;border-radius:14px;border:2px solid ${sel?c.border:'#e5e7eb'};background:${sel?c.bg:'white'};cursor:pointer;"><span style="font-size:22px;margin-bottom:2px;">${act.emoji}</span><span style="font-size:11px;font-weight:700;color:${sel?c.text:'#6b7280'};">${act.label}</span></button>`}).join('')}
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+      <div><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:6px;">Giờ dự kiến</div>
+        <input type="time" id="seTime" value="${timeVal}" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:15px;font-family:monospace;outline:none;" /></div>
+      ${a.hasTimer?`<div><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:6px;">Thời lượng (phút)</div>
+        <input type="number" id="seDur" value="${durVal}" placeholder="VD: 30" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:15px;outline:none;" /></div>`:`<div><input type="hidden" id="seDur" value="" /></div>`}
+    </div>
+    ${actId==='feed'?`<div style="margin-bottom:14px;"><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:8px;">Loại ăn</div><input type="hidden" id="seFT" value="${ftVal}" /><div style="display:flex;flex-wrap:wrap;gap:6px;">${FEED_TYPES.map(f2=>{const sel2=f2.id===ftVal;return `<button onclick="schSelectFT('${f2.id}')" style="padding:6px 12px;border-radius:20px;border:1.5px solid ${sel2?'#f59e0b':'#e5e7eb'};background:${sel2?'#fffbeb':'white'};color:${sel2?'#78350f':'#6b7280'};font-size:12px;font-weight:600;cursor:pointer;">${f2.label}</button>`}).join('')}</div>${ftVal==='bottle'?`<input type="number" id="seAmt" value="${amtVal}" placeholder="Số ml" style="width:100%;margin-top:8px;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 12px;font-size:14px;outline:none;" />`:`<input type="hidden" id="seAmt" value="" />`}</div>`:`<input type="hidden" id="seFT" value="" /><input type="hidden" id="seAmt" value="" />`}
+    <div style="margin-bottom:18px;"><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:6px;">Ghi chú</div>
+      <input type="text" id="seNote" value="${esc(noteVal)}" placeholder="VD: Cữ 1 buổi sáng" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:14px;outline:none;" /></div>
+    <button onclick="schSubmitEntry()" style="width:100%;background:#f43f5e;color:white;border:none;border-radius:20px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;">${isEdit?'Lưu thay đổi':'Thêm vào lịch'}</button>
+  </div>
+</div>`
+}
+
+// ── Settings ──────────────────────────────────────────────────────
+function rSettings() {
+  const cfg=store.getSettings()
+  const ageMonths=getBabyAgeMonths()
+  const std=STANDARDS[getStandardsMonth()]
+  const reminderOn=cfg.reminderOn||false
+  const birthDate=cfg.birthDate||''
+  const babyGender=cfg.babyGender||'girl'
+  const reminderInterval=cfg.reminderInterval||150
+  const notifPermission=('Notification' in window)?Notification.permission:'unsupported'
+  const all=store.getLogs(),days=Object.keys(all).length,totalE=Object.values(all).reduce((s,a)=>s+a.length,0)
+  return `
+<div style="padding:16px;">
+  <!-- Baby info -->
+  <div style="background:white;border-radius:18px;border:1px solid #f3f4f6;overflow:hidden;margin-bottom:12px;">
+    <div style="padding:16px;border-bottom:1px solid #f9fafb;">
+      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:8px;">👶 Tên bé</div>
+      <div style="display:flex;gap:8px;">
+        <input id="sName" value="${esc(S.babyName)}" style="flex:1;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 12px;font-size:14px;outline:none;font-weight:600;" />
+        <button onclick="saveName()" style="background:#f43f5e;color:white;border:none;border-radius:12px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;">Lưu</button>
+      </div>
+    </div>
+    <div style="padding:14px 16px;border-bottom:1px solid #f9fafb;">
+      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:8px;">🎂 Ngày sinh bé</div>
+      <div style="display:flex;gap:8px;">
+        <input type="date" id="sBirthDate" value="${birthDate}"
+          style="flex:1;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 12px;font-size:14px;outline:none;" />
+        <button onclick="saveBirthDate()" style="background:#f43f5e;color:white;border:none;border-radius:12px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;">Lưu</button>
+      </div>
+      <div style="font-size:11px;color:#9ca3af;margin-top:6px;">Dùng để tính lịch tiêm chủng chính xác</div>
+    </div>
+    <div style="padding:14px 16px;border-bottom:1px solid #f9fafb;">
+      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:8px;">👶 Giới tính bé</div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="saveBabyGender('girl')"
+          style="flex:1;padding:10px;border-radius:12px;border:2px solid ${babyGender==='girl'?'#f43f5e':'#e5e7eb'};background:${babyGender==='girl'?'#fff1f2':'white'};color:${babyGender==='girl'?'#e11d48':'#6b7280'};font-size:14px;font-weight:800;cursor:pointer;">
+          👧 Bé gái
+        </button>
+        <button onclick="saveBabyGender('boy')"
+          style="flex:1;padding:10px;border-radius:12px;border:2px solid ${babyGender==='boy'?'#3b82f6':'#e5e7eb'};background:${babyGender==='boy'?'#eff6ff':'white'};color:${babyGender==='boy'?'#1d4ed8':'#6b7280'};font-size:14px;font-weight:800;cursor:pointer;">
+          👦 Bé trai
+        </button>
+      </div>
+    </div>
+    <div style="padding:16px;">
+      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:10px;">📅 Tuổi của bé</div>
+      ${birthDate?`
+      <div style="background:#fff1f2;border:1.5px solid #fda4af;border-radius:14px;padding:14px;text-align:center;">
+        <div style="font-size:22px;font-weight:800;color:#e11d48;">${ageMonths<1?'Dưới 1 tháng':ageMonths+' tháng tuổi'}</div>
+        <div style="font-size:11px;color:#9ca3af;margin-top:4px;">Tự động tính từ ngày sinh · So sánh theo chuẩn ${std.label}</div>
+      </div>`:`
+      <div style="background:#fafafa;border:1.5px dashed #d1d5db;border-radius:14px;padding:14px;text-align:center;color:#9ca3af;font-size:13px;">
+        Nhập ngày sinh ở trên để app tự tính tuổi bé chính xác
+      </div>`}
+      <div style="font-size:11px;color:#9ca3af;margin-top:8px;text-align:center;">Dùng để so sánh với chuẩn WHO trong tổng kết tuần</div>
+    </div>
+  </div>
+
+  <!-- Reminder settings -->
+  <div style="background:white;border-radius:18px;border:1px solid #f3f4f6;overflow:hidden;margin-bottom:12px;">
+    <div style="padding:14px 16px;border-bottom:1px solid #f9fafb;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#374151;">🔔 Nhắc giờ ăn</div>
+          <div style="font-size:12px;color:#9ca3af;margin-top:2px;">Nhắc sau mỗi lần ghi ăn</div>
+        </div>
+        <button onclick="toggleReminder(${!reminderOn})"
+          style="width:48px;height:28px;border-radius:14px;border:none;cursor:pointer;position:relative;transition:background .2s;background:${reminderOn?'#f43f5e':'#d1d5db'};">
+          <div style="width:22px;height:22px;background:white;border-radius:50%;position:absolute;top:3px;transition:left .2s;left:${reminderOn?'23px':'3px'};box-shadow:0 1px 3px rgba(0,0,0,.2);"></div>
+        </button>
+      </div>
+    </div>
+    ${reminderOn?`
+    <div style="padding:14px 16px;border-bottom:1px solid #f9fafb;">
+      <div style="font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:8px;">Nhắc sau bao lâu?</div>
+      <div style="display:flex;gap:8px;">
+        ${[[120,'2 tiếng'],[150,'2.5 tiếng'],[180,'3 tiếng']].map(([v,l])=>`
+        <button onclick="saveReminderInterval(${v})"
+          style="flex:1;padding:9px 4px;border-radius:12px;border:2px solid ${reminderInterval===v?'#f43f5e':'#e5e7eb'};background:${reminderInterval===v?'#fff1f2':'white'};color:${reminderInterval===v?'#e11d48':'#6b7280'};font-size:12px;font-weight:700;cursor:pointer;">${l}</button>`).join('')}
+      </div>
+    </div>
+    <div style="padding:14px 16px;">
+      <div style="font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:8px;">Quyền thông báo</div>
+      ${notifPermission==='granted'
+        ? `<div style="color:#14532d;font-size:13px;font-weight:600;">✅ Đã bật — thông báo hoạt động khi app chạy nền</div>`
+        : notifPermission==='denied'
+        ? `<div style="color:#ef4444;font-size:13px;">❌ Đã từ chối — vào Settings > Safari > Notifications để bật lại</div>`
+        : notifPermission==='unsupported'
+        ? `<div style="color:#9ca3af;font-size:13px;">Trình duyệt này không hỗ trợ thông báo</div>`
+        : `<button onclick="requestNotifPermission()" style="width:100%;background:#eff6ff;border:1.5px solid #3b82f6;color:#1e3a8a;border-radius:12px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;">🔔 Bật thông báo</button>`}
+    </div>`:''}
+  </div>
+
+  <!-- Data -->
   <div style="background:white;border-radius:18px;border:1px solid #f3f4f6;overflow:hidden;margin-bottom:12px;">
     <div style="padding:14px 16px;border-bottom:1px solid #f9fafb;">
       <div style="font-size:12px;color:#9ca3af;margin-bottom:2px;">Dữ liệu đã lưu</div>
-      <div style="font-size:14px;font-weight:700;color:#1f2937;">${days} ngày · ${totalEntries} lần ghi</div>
+      <div style="font-size:14px;font-weight:700;color:#1f2937;">${days} ngày · ${totalE} lần ghi</div>
     </div>
     <div style="padding:14px 16px;border-bottom:1px solid #f9fafb;">
-      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:4px;">💾 Xuất dữ liệu (Backup)</div>
-      <div style="font-size:12px;color:#9ca3af;margin-bottom:10px;">Lưu file JSON về máy để không mất data</div>
+      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:4px;">🖼️ Xuất ảnh hôm nay</div>
+      <div style="font-size:12px;color:#9ca3af;margin-bottom:10px;">Lưu timeline hôm nay thành ảnh vào thư viện</div>
+      <button onclick="set({tab:'today',date:todayStr()});setTimeout(exportAsImage,100)"
+        style="background:#fff1f2;border:1.5px solid #fda4af;color:#e11d48;border-radius:12px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;width:100%;">🖼️ Lưu ảnh hôm nay</button>
+    </div>
+    <div style="padding:14px 16px;border-bottom:1px solid #f9fafb;">
+      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:4px;">💾 Xuất dữ liệu (JSON)</div>
+      <div style="font-size:12px;color:#9ca3af;margin-bottom:10px;">Backup toàn bộ: tên bé, ngày sinh, giới tính, nhật ký, lịch mẫu, tăng trưởng, sức khoẻ, tiêm chủng, mood · Mở tab mới, không mất trang</div>
       <button onclick="exportData()"
-        style="background:#f0fdf4;border:1.5px solid #22c55e;color:#14532d;border-radius:12px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;width:100%;">
-        📤 Xuất dữ liệu
-      </button>
+        style="background:#f0fdf4;border:1.5px solid #22c55e;color:#14532d;border-radius:12px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;width:100%;">📤 Xuất JSON</button>
     </div>
     <div style="padding:14px 16px;">
-      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:4px;">📂 Nhập dữ liệu (Restore)</div>
-      <div style="font-size:12px;color:#9ca3af;margin-bottom:10px;">Khôi phục từ file backup</div>
+      <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:4px;">📂 Khôi phục dữ liệu</div>
+      <div style="font-size:12px;color:#9ca3af;margin-bottom:10px;">Nhập từ file backup JSON</div>
       <label style="display:block;background:#eff6ff;border:1.5px solid #3b82f6;color:#1e3a8a;border-radius:12px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;">
         📥 Chọn file JSON
         <input type="file" accept=".json" onchange="importFile(this.files[0])" style="display:none;" />
@@ -536,150 +1880,504 @@ function rSettings() {
     </div>
   </div>
 
+  <!-- Danger zone -->
   <div style="background:white;border-radius:18px;border:1px solid #f3f4f6;overflow:hidden;margin-bottom:24px;">
     <div style="padding:14px 16px;">
       <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:4px;">🗑️ Xoá toàn bộ dữ liệu</div>
       <div style="font-size:12px;color:#9ca3af;margin-bottom:10px;">Không thể hoàn tác sau khi xoá</div>
-      <button onclick="if(confirm('Xoá toàn bộ? Không hoàn tác được!')){store.setLogs({});draw()}"
-        style="background:#fff1f2;border:1.5px solid #fca5a5;color:#ef4444;border-radius:12px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;width:100%;">
-        Xoá tất cả
-      </button>
+      <button onclick="showConfirm('Xoá TOÀN BỘ dữ liệu: nhật ký, lịch mẫu, tăng trưởng, sức khoẻ, tiêm chủng, mood, tên bé/ngày sinh? Không thể hoàn tác!',resetAllData)"
+        style="background:#fff1f2;border:1.5px solid #fca5a5;color:#ef4444;border-radius:12px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;width:100%;">Xoá tất cả</button>
     </div>
   </div>
-
   <div style="text-align:center;color:#d1d5db;font-size:12px;">Baby Tracker 🍼 · Made with ❤️ for Bé</div>
 </div>`
 }
 
-// ── Modal ────────────────────────────────────────────────────────
+// ── Log Modal ─────────────────────────────────────────────────────
 function rModal() {
-  const m      = S.modal
-  const isEdit = m.mode==='edit'
-  const entry  = m.entry
-  const actId  = m.actId || entry?.activityId || 'feed'
-  const a      = getAct(actId)
-  const f      = m._f || {}
-  const sv     = (k, fb) => f[k] !== undefined ? f[k] : (entry?.[k] ?? fb)
-
-  const startVal   = sv('startTime', nowS())
-  const endVal     = sv('endTime',   nowS())
-  const noteVal    = sv('note',      '')
-  const feedTVal   = sv('feedType',  'breast_left')
-  const amountVal  = sv('amount',    '')
-  const isBottle   = feedTVal==='bottle'
-
+  const m=S.modal,isEdit=m.mode==='edit',entry=m.entry
+  const actId=m.actId||entry?.activityId||'feed',a=getAct(actId),f=m._f||{}
+  const sv=(k,fb)=>f[k]!==undefined?f[k]:(entry?.[k]??fb)
+  const startVal=sv('startTime',nowS()),endVal=sv('endTime',nowS()),noteVal=sv('note','')
+  const ftVal=sv('feedType','breast_left'),amtVal=sv('amount','')
   return `
-<div onclick="closeModal()"
-  style="position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:flex;align-items:flex-end;justify-content:center;">
-  <div onclick="event.stopPropagation()" class="slide-up"
-    style="background:white;border-radius:24px 24px 0 0;padding:20px 20px 36px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;">
-
+<div onclick="closeModal()" style="position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:flex;align-items:flex-end;justify-content:center;">
+  <div onclick="event.stopPropagation()" class="slide-up" style="background:white;border-radius:24px 24px 0 0;padding:20px 20px 36px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;">
     <div style="width:40px;height:4px;background:#e5e7eb;border-radius:4px;margin:0 auto 16px;"></div>
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
       <h2 style="font-size:17px;font-weight:800;color:#111827;margin:0;">${isEdit?'Chỉnh sửa ghi chú':'Thêm hoạt động'}</h2>
       <button onclick="closeModal()" style="background:#f3f4f6;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;color:#6b7280;">×</button>
     </div>
-
-    <!-- Activity grid -->
     <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Hoạt động</div>
+      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:8px;">Hoạt động</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-        ${ACTIVITIES.map(act => {
-          const sel = act.id===actId
-          const c   = getClr(act.id)
-          return `
-<button onclick="selectAct('${act.id}')"
-  style="display:flex;flex-direction:column;align-items:center;padding:10px 4px;border-radius:14px;border:2px solid ${sel?c.border:'#e5e7eb'};background:${sel?c.bg:'white'};cursor:pointer;transition:all .1s;">
-  <span style="font-size:22px;margin-bottom:2px;">${act.emoji}</span>
-  <span style="font-size:11px;font-weight:700;color:${sel?c.text:'#6b7280'};">${act.label}</span>
-</button>`
-        }).join('')}
+        ${ACTIVITIES.map(act=>{const sel=act.id===actId,c=getClr(act.id);return `<button onclick="selectAct('${act.id}')" style="display:flex;flex-direction:column;align-items:center;padding:10px 4px;border-radius:14px;border:2px solid ${sel?c.border:'#e5e7eb'};background:${sel?c.bg:'white'};cursor:pointer;"><span style="font-size:22px;margin-bottom:2px;">${act.emoji}</span><span style="font-size:11px;font-weight:700;color:${sel?c.text:'#6b7280'};">${act.label}</span></button>`}).join('')}
       </div>
     </div>
-
-    <!-- Time -->
     <div style="display:grid;grid-template-columns:${a.hasTimer?'1fr 1fr':'1fr'};gap:10px;margin-bottom:14px;">
-      <div>
-        <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Bắt đầu</div>
-        <input type="time" id="mStart" value="${startVal}"
-          style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:15px;font-family:monospace;outline:none;" />
-      </div>
-      ${a.hasTimer ? `
-      <div>
-        <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Kết thúc</div>
-        <input type="time" id="mEnd" value="${endVal}"
-          style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:15px;font-family:monospace;outline:none;" />
-      </div>` : ''}
+      <div><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:6px;">Bắt đầu</div>
+        <input type="time" id="mStart" value="${startVal}" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:15px;font-family:monospace;outline:none;" /></div>
+      ${a.hasTimer?`<div><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:6px;">Kết thúc</div>
+        <input type="time" id="mEnd" value="${endVal}" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:15px;font-family:monospace;outline:none;" /></div>`:''}
     </div>
-
-    <!-- Feed type -->
-    ${actId==='feed' ? `
+    ${actId==='feed'?`
     <div style="margin-bottom:14px;">
-      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Loại ăn</div>
-      <input type="hidden" id="mFT" value="${feedTVal}" />
+      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:8px;">Loại ăn</div>
+      <input type="hidden" id="mFT" value="${ftVal}" />
       <div style="display:flex;flex-wrap:wrap;gap:6px;">
-        ${FEED_TYPES.map(f2 => {
-          const sel2 = f2.id===feedTVal
-          return `<button onclick="selectFT('${f2.id}')"
-            style="padding:6px 12px;border-radius:20px;border:1.5px solid ${sel2?'#f59e0b':'#e5e7eb'};background:${sel2?'#fffbeb':'white'};color:${sel2?'#78350f':'#6b7280'};font-size:12px;font-weight:600;cursor:pointer;">${f2.label}</button>`
-        }).join('')}
+        ${FEED_TYPES.map(f2=>{const sel2=f2.id===ftVal;return `<button onclick="selectFT('${f2.id}')" style="padding:6px 12px;border-radius:20px;border:1.5px solid ${sel2?'#f59e0b':'#e5e7eb'};background:${sel2?'#fffbeb':'white'};color:${sel2?'#78350f':'#6b7280'};font-size:12px;font-weight:600;cursor:pointer;">${f2.label}</button>`}).join('')}
       </div>
-      <div id="mAmtRow" style="${isBottle?'':'display:none;'}margin-top:8px;">
-        <input type="number" id="mAmt" value="${amountVal}" placeholder="Số ml (tuỳ chọn)"
-          style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 12px;font-size:14px;outline:none;" />
-      </div>
-    </div>` : '<input type="hidden" id="mFT" value="" />'}
-
-    <!-- Note -->
+      ${ftVal==='bottle'?`<input type="number" id="mAmt" value="${amtVal}" placeholder="Số ml" style="width:100%;margin-top:8px;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 12px;font-size:14px;outline:none;" />`:`<input type="hidden" id="mAmt" value="" />`}
+    </div>`:`<input type="hidden" id="mFT" value="" /><input type="hidden" id="mAmt" value="" />`}
     <div style="margin-bottom:18px;">
-      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Ghi chú</div>
-      <input type="text" id="mNote" value="${noteVal}" placeholder="Thêm ghi chú..."
-        style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:14px;outline:none;" />
+      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:6px;">Ghi chú</div>
+      <input type="text" id="mNote" value="${esc(noteVal)}" placeholder="Thêm ghi chú..." style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:14px;outline:none;" />
     </div>
-
-    <button onclick="submitModal()"
-      style="width:100%;background:#f43f5e;color:white;border:none;border-radius:20px;padding:15px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(244,63,94,.3);">
-      ${isEdit?'Lưu thay đổi':'Lưu hoạt động'}
-    </button>
+    <button onclick="submitModal()" style="width:100%;background:#f43f5e;color:white;border:none;border-radius:20px;padding:15px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(244,63,94,.3);">${isEdit?'Lưu thay đổi':'Lưu hoạt động'}</button>
   </div>
 </div>`
 }
 
-// ── Bottom nav ───────────────────────────────────────────────────
-function rBottomNav() {
-  const tabs = [
-    { id:'today',    e:'🏠', l:'Hôm nay'  },
-    { id:'history',  e:'📅', l:'Lịch sử'  },
-    { id:'settings', e:'⚙️', l:'Cài đặt'  },
+// ── Confirm Modal ─────────────────────────────────────────────────
+function rConfirmModal() {
+  const m=S.confirmModal
+  return `
+<div style="position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px;">
+  <div class="slide-up" style="background:white;border-radius:20px;padding:24px;width:100%;max-width:320px;text-align:center;">
+    <div style="font-size:36px;margin-bottom:12px;">⚠️</div>
+    <p style="font-size:15px;font-weight:600;color:#1f2937;margin:0 0 20px;line-height:1.5;">${esc(m.msg)}</p>
+    <div style="display:flex;gap:10px;">
+      <button onclick="confirmCancel()" style="flex:1;background:#f3f4f6;border:none;border-radius:14px;padding:12px;font-size:14px;font-weight:700;color:#6b7280;cursor:pointer;">Huỷ</button>
+      <button onclick="confirmOk()" style="flex:1;background:#f43f5e;border:none;border-radius:14px;padding:12px;font-size:14px;font-weight:700;color:white;cursor:pointer;">Xác nhận</button>
+    </div>
+  </div>
+</div>`
+}
+
+
+// ── Export Modal ─────────────────────────────────────────────────
+function rExportModal() {
+  const days = Object.keys(store.getLogs()).length
+  const schCount = store.getSchedules().length
+  return `
+<div style="position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:flex;align-items:flex-end;justify-content:center;">
+  <div class="slide-up" style="background:white;border-radius:24px 24px 0 0;padding:20px 20px 36px;width:100%;max-width:480px;max-height:80vh;display:flex;flex-direction:column;">
+    <div style="width:40px;height:4px;background:#e5e7eb;border-radius:4px;margin:0 auto 16px;"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+      <h2 style="font-size:16px;font-weight:800;color:#111827;margin:0;">💾 Xuất dữ liệu</h2>
+      <button onclick="set({exportModal:null})" style="background:#f3f4f6;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;color:#6b7280;">×</button>
+    </div>
+    <p style="font-size:12px;color:#9ca3af;margin:0 0 12px;">${days} ngày · ${schCount} lịch mẫu · ${todayStr()}</p>
+    <textarea id="exportTextarea" readonly
+      style="flex:1;min-height:140px;border:1.5px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:11px;font-family:monospace;color:#374151;resize:none;outline:none;overflow:auto;"
+    >${esc(S.exportModal)}</textarea>
+    <button onclick="downloadJsonFile()"
+      style="width:100%;background:linear-gradient(135deg,#f43f5e,#fb7185);color:white;border:none;border-radius:14px;padding:13px;font-size:14px;font-weight:800;cursor:pointer;margin-top:14px;margin-bottom:8px;">
+      📥 Tải về tệp
+    </button>
+    <p style="font-size:11px;color:#9ca3af;text-align:center;margin:0 0 10px;">
+      iPhone: chọn "Lưu vào Tệp" trong share sheet · Android: tự tải xuống
+    </p>
+    <div style="display:flex;gap:8px;">
+      <button id="copyBtn" onclick="copyExportData()"
+        style="flex:1;background:#f0fdf4;border:1.5px solid #22c55e;color:#14532d;border-radius:12px;padding:10px;font-size:12px;font-weight:700;cursor:pointer;">
+        📋 Copy
+      </button>
+      <button onclick="downloadExportData()"
+        style="flex:1;background:#f3f4f6;border:1.5px solid #d1d5db;color:#6b7280;border-radius:12px;padding:10px;font-size:12px;font-weight:700;cursor:pointer;">
+        🔗 Xem JSON
+      </button>
+    </div>
+  </div>
+</div>`
+}
+
+
+// ═══════════════════════════════════════════════════════════════
+// HEALTH TAB
+// ═══════════════════════════════════════════════════════════════
+function rHealth() {
+  const subTabs=[
+    {id:'mood',     e:'💝', l:'Mood mẹ'},
+    {id:'growth',   e:'📏', l:'Tăng trưởng'},
+    {id:'notes',    e:'🩺', l:'Sức khoẻ'},
+    {id:'vaccines', e:'💉', l:'Tiêm chủng'},
   ]
+  return `
+<div>
+  <div style="display:flex;gap:6px;padding:12px 16px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;">
+    ${subTabs.map(t=>`
+    <button onclick="set({healthView:'${t.id}'})"
+      style="flex-shrink:0;padding:7px 14px;border-radius:20px;border:1.5px solid ${S.healthView===t.id?'#f43f5e':'#e5e7eb'};
+      background:${S.healthView===t.id?'#fff1f2':'white'};color:${S.healthView===t.id?'#e11d48':'#6b7280'};
+      font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;">
+      ${t.e} ${t.l}
+    </button>`).join('')}
+    <button onclick="exportDoctorReport()"
+      style="flex-shrink:0;padding:7px 14px;border-radius:20px;border:1.5px solid #3b82f6;
+      background:#eff6ff;color:#1e3a8a;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;">
+      📋 Báo cáo BS
+    </button>
+  </div>
+  <div style="padding-top:12px;">
+    ${S.healthView==='mood'     ? rMoodTab()     : ''}
+    ${S.healthView==='growth'   ? rGrowthTab()   : ''}
+    ${S.healthView==='notes'    ? rNotesTab()    : ''}
+    ${S.healthView==='vaccines' ? rVaccinesTab() : ''}
+  </div>
+  ${S.growthModal ? rGrowthModal() : ''}
+  ${S.healthModal ? rHealthNoteModal() : ''}
+  ${S.moodModal   ? rMoodPickModal()   : ''}
+</div>`
+}
+
+// ── Growth Tab ────────────────────────────────────────────────────
+function rGrowthTab() {
+  const all=store.getGrowth()
+  const cfg=store.getSettings()
+  const gender=cfg.babyGender||'girl'
+  const months=getGrowthChartMonth()
+  const wRef=WHO.weight[gender][months]
+  const hRef=WHO.height[gender][months]
+  const latest=all.length?all[all.length-1]:null
+  return `
+<div style="padding:0 16px 32px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;">Tăng trưởng (WHO ${gender==='girl'?'Bé gái':'Bé trai'})</div>
+    <button onclick="set({growthModal:true,editGrowth:null})"
+      style="background:#f43f5e;color:white;border:none;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;">+ Ghi số</button>
+  </div>
+
+  ${latest?`
+  <div style="background:white;border-radius:16px;border:1px solid #f3f4f6;padding:14px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.04);">
+    <div style="font-size:11px;font-weight:700;color:#9ca3af;margin-bottom:10px;">Lần đo gần nhất · ${fmtDateLong(latest.date)}</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      ${latest.weight!=null?`
+      <div style="text-align:center;">
+        <div style="font-size:22px;font-weight:800;color:#1f2937;">${latest.weight}<span style="font-size:13px;color:#6b7280;">kg</span></div>
+        <div style="font-size:10px;color:#9ca3af;">Cân nặng</div>
+        ${wRef?`<div style="font-size:10px;font-weight:600;color:${getWhoStatus(latest.weight,wRef)?.clr||'#9ca3af'};">${getWhoStatus(latest.weight,wRef)?.text||''}</div>`:''}
+      </div>`:'<div></div>'}
+      ${latest.height!=null?`
+      <div style="text-align:center;">
+        <div style="font-size:22px;font-weight:800;color:#1f2937;">${latest.height}<span style="font-size:13px;color:#6b7280;">cm</span></div>
+        <div style="font-size:10px;color:#9ca3af;">Chiều cao</div>
+        ${hRef?`<div style="font-size:10px;font-weight:600;color:${getWhoStatus(latest.height,hRef)?.clr||'#9ca3af'};">${getWhoStatus(latest.height,hRef)?.text||''}</div>`:''}
+      </div>`:'<div></div>'}
+      ${latest.headCirc!=null?`
+      <div style="text-align:center;">
+        <div style="font-size:22px;font-weight:800;color:#1f2937;">${latest.headCirc}<span style="font-size:13px;color:#6b7280;">cm</span></div>
+        <div style="font-size:10px;color:#9ca3af;">Vòng đầu</div>
+      </div>`:'<div></div>'}
+    </div>
+  </div>`:
+  `<div style="text-align:center;padding:32px;color:#9ca3af;"><span style="font-size:40px;">📏</span><p style="font-size:13px;margin-top:8px;">Chưa có số liệu. Bấm "+ Ghi số" để bắt đầu.</p></div>`}
+
+  ${wRef?`
+  <div style="background:white;border-radius:14px;border:1px solid #f3f4f6;padding:12px;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;color:#9ca3af;margin-bottom:8px;">Chuẩn WHO tháng ${months} (${gender==='girl'?'Bé gái':'Bé trai'})</div>
+    ${[['⚖️ Cân nặng',wRef,'kg'],['📏 Chiều cao',hRef,'cm']].map(([lbl,ref,unit])=>ref?`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #f9fafb;">
+      <span style="font-size:12px;color:#374151;">${lbl}</span>
+      <span style="font-size:12px;color:#6b7280;">P3: ${ref[0]} · <strong style="color:#1f2937;">P50: ${ref[1]}</strong> · P97: ${ref[2]} ${unit}</span>
+    </div>`:'').join('')}
+  </div>`:''}
+
+  ${all.length>1?`
+  <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Lịch sử đo</div>
+  <div style="display:flex;flex-direction:column;gap:6px;">
+    ${[...all].reverse().map(r=>`
+    <div style="background:white;border:1px solid #f3f4f6;border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#374151;">${fmtDateLong(r.date)}</div>
+        <div style="font-size:12px;color:#6b7280;">
+          ${r.weight!=null?'⚖️ '+r.weight+'kg  ':''}
+          ${r.height!=null?'📏 '+r.height+'cm  ':''}
+          ${r.headCirc!=null?'🔵 '+r.headCirc+'cm':''}
+        </div>
+        ${r.note?`<div style="font-size:11px;color:#9ca3af;font-style:italic;">${esc(r.note)}</div>`:''}
+      </div>
+      <div style="display:flex;gap:4px;">
+        <button onclick="set({growthModal:true,editGrowth:${JSON.stringify(r).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}})" style="background:none;border:none;cursor:pointer;font-size:14px;padding:4px;">✏️</button>
+        <button onclick="deleteGrowth('${r.id}')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:4px;">🗑️</button>
+      </div>
+    </div>`).join('')}
+  </div>`:''}
+</div>`
+}
+
+// ── Health Notes Tab ──────────────────────────────────────────────
+function rNotesTab() {
+  const all=store.getHealth()
+  return `
+<div style="padding:0 16px 32px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;">Ghi chú sức khoẻ</div>
+    <button onclick="set({healthModal:true,editHealth:null})"
+      style="background:#f43f5e;color:white;border:none;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;">+ Ghi chú</button>
+  </div>
+  ${!all.length?`<div style="text-align:center;padding:40px;color:#9ca3af;"><span style="font-size:40px;">🩺</span><p style="font-size:13px;margin-top:8px;">Chưa có ghi chú sức khoẻ nào.<br>Ghi lại khi bé có triệu chứng bất thường.</p></div>`:''}
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    ${all.map(r=>`
+    <div style="background:white;border-radius:14px;border:1px solid #f3f4f6;padding:12px 14px;box-shadow:0 1px 3px rgba(0,0,0,.04);">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div style="flex:1;">
+          <div style="font-size:12px;font-weight:700;color:#374151;margin-bottom:4px;">${fmtDateLong(r.date)} · ${r.time}</div>
+          ${r.temp!=null?`<div style="display:inline-block;background:${r.temp>=37.5?'#fff1f2':'#f0fdf4'};border:1px solid ${r.temp>=37.5?'#fca5a5':'#86efac'};border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;color:${r.temp>=37.5?'#dc2626':'#15803d'};margin-bottom:5px;">
+            🌡️ ${r.temp}°C ${r.temp>=38?'(Sốt cao)':r.temp>=37.5?'(Sốt nhẹ)':'(Bình thường)'}
+          </div>`:''}
+          ${r.symptoms?.length?`<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px;">
+            ${r.symptoms.map(s=>`<span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;">${s}</span>`).join('')}
+          </div>`:''}
+          ${r.note?`<div style="font-size:12px;color:#6b7280;font-style:italic;">💬 ${esc(r.note)}</div>`:''}
+        </div>
+        <div style="display:flex;gap:2px;margin-left:8px;">
+          <button onclick="set({healthModal:true,editHealth:${JSON.stringify(r).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}})" style="background:none;border:none;cursor:pointer;font-size:14px;padding:4px;">✏️</button>
+          <button onclick="deleteHealthNote('${r.id}')" style="background:none;border:none;cursor:pointer;font-size:14px;padding:4px;">🗑️</button>
+        </div>
+      </div>
+    </div>`).join('')}
+  </div>
+</div>`
+}
+
+// ── Vaccines Tab ──────────────────────────────────────────────────
+function rVaccinesTab() {
+  const cfg=store.getSettings()
+  const done=store.getVaccines()
+  const dates=getVaccineDates()
+  const today=todayStr()
+  const upcoming=VACCINE_SCHEDULE.filter(v=>!done[v.id]&&dates[v.id]&&dates[v.id]>=today).slice(0,3)
+  const overdue =VACCINE_SCHEDULE.filter(v=>!done[v.id]&&dates[v.id]&&dates[v.id]<today)
+  return `
+<div style="padding:0 16px 32px;">
+  ${!cfg.birthDate?`
+  <div style="background:#fef3c7;border:1.5px solid #fbbf24;border-radius:14px;padding:14px;margin-bottom:14px;text-align:center;">
+    <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px;">⚠️ Cần nhập ngày sinh bé</div>
+    <div style="font-size:12px;color:#78350f;margin-bottom:10px;">Để tính ngày tiêm chủng chính xác, hãy vào Cài đặt nhập ngày sinh bé.</div>
+    <button onclick="set({tab:'settings'})" style="background:#f59e0b;color:white;border:none;border-radius:10px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;">Vào Cài đặt →</button>
+  </div>`:''}
+
+  ${overdue.length?`
+  <div style="margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">🔴 Đã đến hạn — chưa tiêm</div>
+    ${overdue.map(v=>`
+    <div style="background:#fff1f2;border:1.5px solid #fca5a5;border-radius:12px;padding:10px 14px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#dc2626;">${v.name}</div>
+        <div style="font-size:11px;color:#6b7280;">Dự kiến: ${dates[v.id]?fmtDateLong(dates[v.id]):''} · ${v.tag==='DV'?'Dịch vụ':'TCMR'}</div>
+      </div>
+      <button onclick="toggleVaccine('${v.id}')" style="background:#dc2626;color:white;border:none;border-radius:10px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;margin-left:8px;">✅ Đã tiêm</button>
+    </div>`).join('')}
+  </div>`:''}
+
+  ${upcoming.length?`
+  <div style="margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">🟡 Sắp tới</div>
+    ${upcoming.map(v=>`
+    <div style="background:#fffbeb;border:1.5px solid #fbbf24;border-radius:12px;padding:10px 14px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#92400e;">${v.name}</div>
+        <div style="font-size:11px;color:#6b7280;">Dự kiến: ${dates[v.id]?fmtDateLong(dates[v.id]):''} · ${v.tag==='DV'?'Dịch vụ':'TCMR'}</div>
+      </div>
+      <button onclick="toggleVaccine('${v.id}')" style="background:#f59e0b;color:white;border:none;border-radius:10px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;margin-left:8px;">✅ Đã tiêm</button>
+    </div>`).join('')}
+  </div>`:''}
+
+  <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Toàn bộ lịch tiêm</div>
+  <div style="display:flex;flex-direction:column;gap:6px;">
+    ${VACCINE_SCHEDULE.map(v=>{
+      const isDone=!!done[v.id]
+      const scheduled=dates[v.id]
+      const isOverdue=!isDone&&scheduled&&scheduled<today
+      return `
+    <div style="background:white;border-radius:12px;border:1px solid ${isDone?'#bbf7d0':isOverdue?'#fca5a5':'#f3f4f6'};padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:13px;font-weight:${isDone?'600':'700'};color:${isDone?'#6b7280':'#1f2937'};${isDone?'text-decoration:line-through;':''}">${v.name}</div>
+        <div style="font-size:11px;color:#9ca3af;">${v.months} tháng · ${v.tag==='DV'?'💊 Dịch vụ':'🏥 TCMR'}${scheduled?' · '+fmtDateLong(scheduled):''}</div>
+        ${isDone?`<div style="font-size:11px;color:#16a34a;font-weight:600;">✅ Đã tiêm ${done[v.id].doneDate?'ngày '+fmtDateLong(done[v.id].doneDate):''}</div>`:''}
+      </div>
+      <button onclick="toggleVaccine('${v.id}')"
+        style="flex-shrink:0;margin-left:8px;background:${isDone?'#f0fdf4':'#f3f4f6'};border:1px solid ${isDone?'#86efac':'#e5e7eb'};border-radius:10px;padding:6px 10px;font-size:13px;cursor:pointer;">
+        ${isDone?'✅':'○'}
+      </button>
+    </div>`}).join('')}
+  </div>
+</div>`
+}
+
+// ── Mood Tab ──────────────────────────────────────────────────────
+function rMoodTab() {
+  const all=store.getMood()
+  const week=all.filter(m=>{
+    const d=new Date(m.date),n=new Date()
+    return (n-d)/(1000*60*60*24)<=7
+  })
+  const lowDays=week.filter(m=>m.score<=2).length
+  return `
+<div style="padding:0 16px 32px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <div>
+      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;">Mood của mẹ</div>
+      <div style="font-size:11px;color:#9ca3af;margin-top:2px;">Ghi lại mỗi ngày để theo dõi sức khoẻ tinh thần</div>
+    </div>
+    <button onclick="set({moodModal:true})"
+      style="background:#f43f5e;color:white;border:none;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;">+ Ghi mood</button>
+  </div>
+
+  ${lowDays>=3?`
+  <div style="background:#fef3c7;border:1.5px solid #fbbf24;border-radius:14px;padding:14px;margin-bottom:14px;">
+    <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:4px;">💛 Mẹ ơi, cần chú ý sức khoẻ tinh thần</div>
+    <div style="font-size:12px;color:#78350f;line-height:1.5;">Mẹ có ${lowDays} ngày mood thấp trong tuần qua. Trầm cảm sau sinh rất phổ biến và hoàn toàn có thể điều trị. Hãy chia sẻ với người thân hoặc bác sĩ nếu cảm thấy không ổn nhé 💛</div>
+  </div>`:''}
+
+  ${week.length?`
+  <div style="background:white;border-radius:14px;border:1px solid #f3f4f6;padding:12px;margin-bottom:14px;">
+    <div style="font-size:11px;font-weight:700;color:#9ca3af;margin-bottom:10px;">7 ngày gần nhất</div>
+    <div style="display:flex;gap:6px;justify-content:center;">
+      ${getWeekDates().map(d=>{
+        const m=all.find(x=>x.date===d)
+        const ml=m?MOOD_LEVELS.find(l=>l.score===m.score):null
+        return `<div style="flex:1;text-align:center;">
+          <div style="font-size:20px;">${ml?ml.emoji:'·'}</div>
+          <div style="font-size:9px;color:#9ca3af;">${fmtDate(d).split(',')[0]}</div>
+        </div>`
+      }).join('')}
+    </div>
+  </div>`:''}
+
+  ${!all.length?`<div style="text-align:center;padding:32px;color:#9ca3af;"><span style="font-size:40px;">💝</span><p style="font-size:13px;margin-top:8px;">Chưa có ghi chú mood nào.<br>Theo dõi cảm xúc mỗi ngày giúp phát hiện sớm trầm cảm sau sinh.</p></div>`:''}
+  <div style="display:flex;flex-direction:column;gap:6px;">
+    ${all.slice(0,20).map(r=>{
+      const ml=MOOD_LEVELS.find(l=>l.score===r.score)||MOOD_LEVELS[2]
+      return `
+    <div style="background:white;border-radius:12px;border:1.5px solid ${ml.clr}22;padding:10px 14px;display:flex;align-items:center;gap:10px;">
+      <span style="font-size:28px;">${ml.emoji}</span>
+      <div style="flex:1;">
+        <div style="font-size:13px;font-weight:700;color:${ml.clr};">${ml.label}</div>
+        <div style="font-size:11px;color:#9ca3af;">${fmtDateLong(r.date)} · ${r.time}</div>
+        ${r.note?`<div style="font-size:12px;color:#6b7280;font-style:italic;margin-top:2px;">${esc(r.note)}</div>`:''}
+      </div>
+      <button onclick="deleteMood('${r.id}')" style="background:none;border:none;cursor:pointer;font-size:14px;color:#9ca3af;">🗑️</button>
+    </div>`}).join('')}
+  </div>
+</div>`
+}
+
+// ── Health Modals ─────────────────────────────────────────────────
+function rGrowthModal() {
+  const e=S.editGrowth
+  return `
+<div onclick="set({growthModal:false,editGrowth:null})" style="position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:flex;align-items:flex-end;justify-content:center;">
+  <div onclick="event.stopPropagation()" class="slide-up" style="background:white;border-radius:24px 24px 0 0;padding:20px 20px 36px;width:100%;max-width:480px;">
+    <div style="width:40px;height:4px;background:#e5e7eb;border-radius:4px;margin:0 auto 16px;"></div>
+    <h2 style="font-size:16px;font-weight:800;margin:0 0 16px;">${e?'Sửa số liệu':'Ghi số liệu tăng trưởng'}</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+      <div><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:5px;">Ngày đo</div>
+        <input type="date" id="gDate" value="${e?.date||todayStr()}" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 10px;font-size:14px;outline:none;" /></div>
+      <div><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:5px;">Cân nặng (kg)</div>
+        <input type="number" step="0.01" id="gWeight" value="${e?.weight||''}" placeholder="VD: 5.1" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 10px;font-size:14px;outline:none;" /></div>
+      <div><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:5px;">Chiều cao (cm)</div>
+        <input type="number" step="0.1" id="gHeight" value="${e?.height||''}" placeholder="VD: 57.1" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 10px;font-size:14px;outline:none;" /></div>
+      <div><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:5px;">Vòng đầu (cm)</div>
+        <input type="number" step="0.1" id="gHead" value="${e?.headCirc||''}" placeholder="VD: 38.8" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 10px;font-size:14px;outline:none;" /></div>
+    </div>
+    <div style="margin-bottom:16px;"><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:5px;">Ghi chú</div>
+      <input type="text" id="gNote" value="${esc(e?.note||'')}" placeholder="VD: Khám định kỳ tháng 2" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 10px;font-size:14px;outline:none;" /></div>
+    <button onclick="saveGrowth()" style="width:100%;background:#f43f5e;color:white;border:none;border-radius:20px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;">Lưu</button>
+  </div>
+</div>`
+}
+
+function rHealthNoteModal() {
+  const e=S.editHealth
+  return `
+<div onclick="set({healthModal:false,editHealth:null})" style="position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:flex;align-items:flex-end;justify-content:center;">
+  <div onclick="event.stopPropagation()" class="slide-up" style="background:white;border-radius:24px 24px 0 0;padding:20px 20px 36px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;">
+    <div style="width:40px;height:4px;background:#e5e7eb;border-radius:4px;margin:0 auto 16px;"></div>
+    <h2 style="font-size:16px;font-weight:800;margin:0 0 16px;">${e?'Sửa ghi chú':'Ghi chú sức khoẻ'}</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+      <div><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:5px;">Ngày</div>
+        <input type="date" id="hnDate" value="${e?.date||todayStr()}" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 10px;font-size:14px;outline:none;" /></div>
+      <div><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:5px;">Giờ</div>
+        <input type="time" id="hnTime" value="${e?.time||nowS()}" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 10px;font-size:14px;outline:none;" /></div>
+    </div>
+    <div style="margin-bottom:12px;"><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:5px;">🌡️ Nhiệt độ (°C)</div>
+      <input type="number" step="0.1" id="hnTemp" value="${e?.temp||''}" placeholder="VD: 37.5" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 10px;font-size:14px;outline:none;" /></div>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:8px;">Triệu chứng</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        ${SYMPTOMS.map((s,i)=>`<label style="display:flex;align-items:center;gap:4px;background:${(e?.symptoms||[]).includes(s)?'#fef3c7':'#f3f4f6'};border-radius:20px;padding:5px 10px;font-size:12px;font-weight:600;cursor:pointer;">
+          <input type="checkbox" id="sym_${i}" ${(e?.symptoms||[]).includes(s)?'checked':''} style="width:13px;height:13px;" />${s}</label>`).join('')}
+      </div>
+    </div>
+    <div style="margin-bottom:16px;"><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:5px;">Ghi chú thêm</div>
+      <input type="text" id="hnNote" value="${esc(e?.note||'')}" placeholder="Mô tả thêm..." style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 10px;font-size:14px;outline:none;" /></div>
+    <button onclick="saveHealthNote()" style="width:100%;background:#f43f5e;color:white;border:none;border-radius:20px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;">Lưu</button>
+  </div>
+</div>`
+}
+
+function rMoodPickModal() {
+  const score=S._moodScore||3
+  return `
+<div onclick="set({moodModal:false,_moodScore:null})" style="position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:flex;align-items:flex-end;justify-content:center;">
+  <div onclick="event.stopPropagation()" class="slide-up" style="background:white;border-radius:24px 24px 0 0;padding:20px 20px 36px;width:100%;max-width:480px;">
+    <div style="width:40px;height:4px;background:#e5e7eb;border-radius:4px;margin:0 auto 16px;"></div>
+    <h2 style="font-size:16px;font-weight:800;margin:0 0 6px;">💝 Hôm nay mẹ cảm thấy thế nào?</h2>
+    <p style="font-size:12px;color:#9ca3af;margin:0 0 16px;">Ghi lại cảm xúc giúp theo dõi sức khoẻ tinh thần sau sinh</p>
+    <div style="display:flex;justify-content:space-around;margin-bottom:20px;">
+      ${MOOD_LEVELS.map(m=>`
+      <button onclick="set({_moodScore:${m.score}})"
+        style="display:flex;flex-direction:column;align-items:center;gap:4px;background:${score===m.score?m.clr+'22':'transparent'};border:2px solid ${score===m.score?m.clr:'transparent'};border-radius:14px;padding:10px 8px;cursor:pointer;transition:all .1s;">
+        <span style="font-size:30px;">${m.emoji}</span>
+        <span style="font-size:10px;font-weight:700;color:${score===m.score?m.clr:'#9ca3af'};">${m.label}</span>
+      </button>`).join('')}
+    </div>
+    <div style="margin-bottom:16px;"><div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;margin-bottom:5px;">Ghi chú (tuỳ chọn)</div>
+      <input type="text" id="moodNote" placeholder="Mẹ muốn chia sẻ gì không?" style="width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:9px 10px;font-size:14px;outline:none;" /></div>
+    <button onclick="saveMood()" style="width:100%;background:#f43f5e;color:white;border:none;border-radius:20px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;">Lưu mood hôm nay</button>
+  </div>
+</div>`
+}
+
+// ── Bottom Nav ────────────────────────────────────────────────────
+function rBottomNav() {
+  const tabs=[{id:'today',e:'🏠',l:'Hôm nay'},{id:'history',e:'📅',l:'Lịch sử'},{id:'health',e:'💊',l:'Sức khoẻ'},{id:'schedules',e:'📋',l:'Lịch mẫu'},{id:'settings',e:'⚙️',l:'Cài đặt'}]
   return `
 <div style="position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #f3f4f6;display:flex;z-index:10;max-width:480px;margin:0 auto;padding-bottom:env(safe-area-inset-bottom);">
   ${tabs.map(t=>`
-  <button onclick="set({tab:'${t.id}'})"
-    style="flex:1;padding:10px 0 14px;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;">
-    <span style="font-size:22px;">${t.e}</span>
-    <span style="font-size:11px;font-weight:${S.tab===t.id?'800':'500'};color:${S.tab===t.id?'#f43f5e':'#9ca3af'};">${t.l}</span>
+  <button onclick="set({tab:'${t.id}'})" style="flex:1;padding:8px 0 12px;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px;">
+    <span style="font-size:20px;">${t.e}</span>
+    <span style="font-size:10px;font-weight:${S.tab===t.id?'800':'500'};color:${S.tab===t.id?'#f43f5e':'#9ca3af'};">${t.l}</span>
   </button>`).join('')}
 </div>`
 }
 
 // ═══════════════════════════════════════════════════════════════
-// INIT — expose globals for inline onclick
+// INIT
 // ═══════════════════════════════════════════════════════════════
 Object.assign(window, {
-  set, openModal, closeModal, submitModal,
-  selectAct, selectFT, tapActivity, timerStop,
-  deleteEntry, saveName, exportData, importFile,
-  getAct, getClr, shiftDate, store, draw,
+  set, openModal, closeModal, submitModal, selectAct, selectFT,
+  tapActivity, timerStop, deleteEntry, saveName,
+  importFile, exportAsImage, getAct, getClr, shiftDate, store, draw,
+  addMins, fmtDur, todayStr, ftLabel, isBreast,
+  schNew, schDelete, schSaveMeta, schAddEntry, schEditEntry, schDeleteEntry, schUsePreset,
+  schSelectAct, schSelectFT, schSubmitEntry, schApplyToday,
+  showConfirm, confirmOk, confirmCancel, exportData, copyExportData, downloadExportData, exportWeekImage, downloadJsonFile,
+  saveGrowth, deleteGrowth, saveHealthNote, deleteHealthNote, toggleVaccine,
+  saveMood, deleteMood, saveBirthDate, saveBabyGender,
+  exportDoctorReport, getBabyAgeMonths, getWhoStatus, getVaccineDates, splitSleepDayNight,
+  toggleReminder, saveReminderInterval, requestNotifPermission,
+  scheduleReminder, clearReminder, snoozeReminder, getSideSuggestion, resetAllData,
 })
 
-// Restore timer on page load
-const saved = store.getTimer()
-if (saved) {
-  S.timer  = saved
-  S.elapsed = Math.floor((Date.now()-saved.ts)/1000)
-  tickStart()
-}
+// Restore timer
+const _saved = store.getTimer()
+if(_saved){ S.timer=_saved; S.elapsed=Math.floor((Date.now()-_saved.ts)/1000); tickStart() }
+
+// Restore reminder
+initReminderOnLoad()
 
 draw()
 </script>
